@@ -6,7 +6,9 @@
     <title>mentneo - Future is Now</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    
     <style>
         :root {
             --primary: #6366f1;
@@ -153,6 +155,165 @@
             cursor: pointer;
             color: var(--text-primary);
         }
+    
+    /* Add these styles to your existing CSS */
+    
+    /* Contact options in navbar */
+    .contact-options {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+    }
+    
+    .call-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 15px;
+        background: var(--primary);
+        color: white;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .call-button:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+    }
+    
+    /* Nxtwave-style banner */
+    .nxtwave-banner {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(99,102,241,0.9) 0%, rgba(79,70,229,0.9) 100%);
+        padding: 10px 5%;
+        z-index: 5;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .banner-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        color: white;
+        font-weight: 500;
+    }
+    
+    .banner-badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    .highlight {
+        font-weight: 700;
+        text-decoration: underline;
+    }
+    
+    .banner-btn {
+        padding: 8px 18px;
+        background: white;
+        color: var(--primary);
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .banner-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .banner-call-btn {
+        padding: 8px 18px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .banner-call-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+    }
+    
+    /* Hero buttons container */
+    .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    
+    .secondary-button {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+    
+    .secondary-button:hover {
+        background: var(--primary);
+        color: white;
+    }
+    
+    /* Update hero section to account for banner */
+    .hero {
+        padding-top: 50px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 15px 5%;
+        }
+        
+        .contact-options {
+            display: none;
+        }
+        
+        .nxtwave-banner {
+            top: 70px;
+            padding: 10px;
+        }
+        
+        .banner-content {
+            flex-direction: column;
+            text-align: center;
+            padding: 5px 0;
+            gap: 10px;
+        }
+        
+        .banner-content p {
+            font-size: 0.9rem;
+        }
+        
+        .hero {
+            padding-top: 100px;
+        }
+        
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 
         /* Hero Section */
         .hero {
@@ -746,6 +907,8 @@
                 min-height: 300px !important;
             }
         }
+
+        
     </style>
 </head>
 <body class="dark-mode">
@@ -753,27 +916,48 @@
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <nav class="navbar">
-        <a href="#" class="logo">mentneo</a>
-        <div class="nav-links">
-            <a href="./main.html">Home</a>
-            <a href="./about.html">About</a>
-            <a href="./knowmore.html">Curriculum</a>
-            <a href="./gallery.html">mentor</a>
-            <a href="./contact.html">Contact</a>
-        </div>
-        <button class="theme-toggle" id="theme-toggle">🌙</button>
-        <div class="mobile-menu">☰</div>
-    </nav>
+   <!-- Navigation -->
+<nav class="navbar">
+    <a href="#" class="logo">mentneo</a>
+    <div class="nav-links">
+        <a href="./main.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./knowmore.html">Curriculum</a>
+        <a href="./gallery.html">mentor</a>
+        <a href="./contact.html">Contact</a>
+    </div>
+    <div class="contact-options">
+        <a href="tel:+919182146476" class="call-button">
+            <i class="fas fa-phone-alt"></i> Request a Call
+        </a>
+    </div>
+    <button class="theme-toggle" id="theme-toggle">🌙</button>
+    <div class="mobile-menu">☰</div>
+</nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">SHAPING THE FUTURE</h1>
-            <p class="hero-subtitle fade-in">We blend cutting-edge technology with innovative design to create digital experiences that transform industries.</p>
-            <a href="./knowmore.html" class="cta-button fade-in">Know more</a>
+<!-- Hero Section -->
+<section id="hero" class="hero">
+    <!-- Nxtwave-style banner -->
+    <div class="nxtwave-banner">
+        <div class="banner-content">
+            <div class="banner-badge">NEW BATCH</div>
+            <p>Next cohort starting soon! <span class="highlight">Limited seats available</span></p>
+            <a href="https://mentneolearning.netlify.app/login.html" class="banner-btn">Get Started</a>
+            <a href="tel:+919182146476" class="banner-call-btn">
+                <i class="fas fa-phone-alt"></i> Request Call
+            </a>
         </div>
-    </section>
+    </div>
+    
+    <div class="hero-content">
+        <h1 class="hero-title fade-in">SHAPING THE FUTURE</h1>
+        <p class="hero-subtitle fade-in">We blend cutting-edge technology with innovative design to create digital experiences that transform industries.</p>
+        <div class="hero-buttons fade-in">
+            <a href="./knowmore.html" class="cta-button">Know more</a>
+            <a href="https://mentneolearning.netlify.app/login.html" class="cta-button secondary-button">Get Started</a>
+        </div>
+    </div>
+</section>
 
     <!-- About mentneo Overview Section -->
     <section id="about-overview" class="about">
@@ -949,7 +1133,7 @@
         <h2 class="section-title fade-in">Our Projects</h2>
         <div class="gallery-container">
             <div class="gallery-card active">
-                <img src="/api/placeholder/800/500" alt="Project 1" class="gallery-img">
+                <img src="./PHOTOS/31221293.jpg" alt="Project 1" class="gallery-img">
             </div>
             <div class="gallery-card next">
                 <img src="/api/placeholder/800/500" alt="Project 2" class="gallery-img">
@@ -1055,7 +1239,7 @@
         <div class="updates-container" style="max-width: 1200px; margin: 0 auto;">
             <div class="updates-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                 <div class="update-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
-                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 15, 2024</span>
+                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 30, 2025</span>
                     <h3 style="margin: 10px 0; font-size: 1.4rem;">New Batch Starting Soon</h3>
                     <p style="margin-bottom: 15px;">Enrollments open for our next Full-Stack Development bootcamp. Early bird discounts available!</p>
                     <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
@@ -1066,9 +1250,9 @@
                     </a>
                 </div>
                 <div class="update-card" style="background: var (--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
-                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 10, 2024</span>
-                    <h3 style="margin: 10px 0; font-size: 1.4rem;">Success Stories</h3>
-                    <p style="margin-bottom: 15px;">Our recent graduates secured positions at top tech companies with average package of 8 LPA.</p>
+                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 27, 2025</span>
+                    <h3 style="margin: 10px 0; font-size: 1.4rem;">updates</h3>
+                    <p style="margin-bottom: 15px;">course price launch on .</p>
                     <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
                         Read Stories 
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1077,7 +1261,7 @@
                     </a>
                 </div>
                 <div class="update-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
-                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 5, 2024</span>
+                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">may 1, 2025</span>
                     <h3 style="margin: 10px 0; font-size: 1.4rem;">New Course Launch</h3>
                     <p style="margin-bottom: 15px;">Introducing Advanced Python with Data Science specialization. Limited seats available.</p>
                     <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
@@ -1107,11 +1291,11 @@
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <div class="footer-links">
-                    <a href="#hero">Home</a>
-                    <a href="#about">About Us</a>
-                    <a href="#services">Services</a>
-                    <a href="#gallery">Projects</a>
-                    <a href="#contact">Contact</a>
+                    <a href="./main.html">Home</a>
+                    <a href="./about.html">About Us</a>
+                    <a href="./services.html">Services</a>
+                    <a href="./project.html">Projects</a>
+                    <a href="./contact.html">Contact</a>
                 </div>
             </div>
             <div class="footer-col">
