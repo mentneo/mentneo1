@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact mentneo</title>
+    <title>Contact Us - mentneo</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
     <style>
         :root {
             --primary: #6366f1;
@@ -401,6 +403,63 @@
     <a href="main.html" class="back-btn">Back to Main</a>
 
     <script>
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCf0Z27yRLiE1pRPe4kDJPDvaV_dLlkl84",
+          authDomain: "qwedsfvb-6002e.firebaseapp.com",
+          projectId: "qwedsfvb-6002e",
+          storageBucket: "qwedsfvb-6002e.firebasestorage.app", 
+          messagingSenderId: "970311760029",
+          appId: "1:970311760029:web:50b081a7f98e34a41c7c74",
+          measurementId: "G-RJHDRBZFF8"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.querySelector('select').value || "General Inquiry";
+            const message = document.querySelector('textarea').value;
+            
+            const formData = {
+                name,
+                email,
+                phone,
+                subject,
+                message,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                // Save to Firebase
+                await db.collection('contacts').add(formData);
+                
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.add('show');
+                createConfetti();
+                
+                // Reset form
+                e.target.reset();
+                
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error sending message. Please try again.');
+            }
+        });
+        
         // Form Submission
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
