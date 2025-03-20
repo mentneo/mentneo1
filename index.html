@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mentneo - Welcome to the Future</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <title>mentneo - Welcome</title>
     <style>
         * {
             margin: 0;
@@ -15,246 +13,160 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
+            background: #0f172a;
             color: #ffffff;
             overflow: hidden;
-        }
-
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+        }
+
+        .intro-animation {
             text-align: center;
-            padding: 0 20px;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .logo {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #f16363, #e00505);
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             opacity: 0;
-            transform: translateY(30px);
+            transform: scale(0.9);
+            animation: logoReveal 1s ease forwards 0.5s;
         }
 
         .tagline {
+            margin-top: 1rem;
             font-size: 1.5rem;
-            margin-bottom: 40px;
-            max-width: 600px;
+            color: #94a3b8;
             opacity: 0;
-            transform: translateY(30px);
+            animation: fadeIn 1s ease forwards 1.5s;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            opacity: 0;
-            transform: translateY(30px);
+        .loading-bar {
+            width: 200px;
+            height: 3px;
+            background: #1e293b;
+            margin: 2rem auto;
+            position: relative;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: #6366f1;
-            color: white;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid #6366f1;
-            color: #6366f1;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        .scroll-indicator {
+        .loading-progress {
             position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #6366f1, #4f46e5);
+            animation: loading 4s linear forwards;
+        }
+
+        .powered-by {
+            font-size: 0.9rem;
+            color: #64748b;
             opacity: 0;
-            animation: bounce 2s infinite;
+            animation: fadeIn 1s ease forwards 2s;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
+        @keyframes logoReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
             }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
+            100% {
+                opacity: 1;
+                transform: scale(1);
             }
         }
 
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 3rem;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
             }
+        }
 
-            .tagline {
-                font-size: 1.2rem;
+        @keyframes loading {
+            0% {
+                width: 0;
             }
+            100% {
+                width: 100%;
+            }
+        }
 
-            .cta-buttons {
-                flex-direction: column;
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #6366f1;
+            border-radius: 50%;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    
-    <div class="content">
-        <h1 class="logo" >mentneo</h1>
-        <p class="tagline">Pioneering the future through innovative digital solutions</p>
-        <div class="cta-buttons">
-            <a href="main.html" class="btn btn-primary">Explore Our World</a>
-            <a href="#" class="btn btn-secondary">Watch Demo</a>
+    <div class="particles">
+        <!-- Particles will be added via JavaScript -->
+    </div>
+
+    <div class="intro-animation">
+        <h1 class="logo">mentneo</h1>
+        <p class="tagline">Building Future Technologies</p>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
         </div>
-        <div class="scroll-indicator">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
-                <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
-        </div>
+        <p class="powered-by">Powered by Innovation</p>
     </div>
 
     <script>
-        // Three.js Scene Setup
-        const canvas = document.getElementById('canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x0a0a0a);
-
-        // Create Galaxy
-        const galaxyGeometry = new THREE.BufferGeometry();
-        const galaxyMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            color: 0x6366f1,
-            blending: THREE.AdditiveBlending,
-            transparent: true
-        });
-
-        const particlesCount = 15000;
-        const positions = new Float32Array(particlesCount * 3);
-        const scales = new Float32Array(particlesCount);
-
-        for(let i = 0; i < particlesCount; i++) {
-            const i3 = i * 3;
-            const radius = Math.random() * 5;
-            const spinAngle = radius * 5;
-            const branchAngle = ((i % 3) / 3) * Math.PI * 2;
-
-            positions[i3] = Math.cos(branchAngle + spinAngle) * radius;
-            positions[i3 + 1] = (Math.random() - 0.5) * 2;
-            positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius;
-            
-            scales[i] = Math.random();
+        // Create floating particles
+        const particlesContainer = document.querySelector('.particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 20}s`;
+            particlesContainer.appendChild(particle);
         }
 
-        galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        galaxyGeometry.setAttribute('scale', new THREE.BufferAttribute(scales, 1));
-
-        const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
-        scene.add(galaxy);
-
-        camera.position.z = 5;
-
-        // Mouse Movement Effect
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.001;
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.001;
-        });
-
-        // Animation
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
-
-            galaxy.rotation.y += 0.001;
-            galaxy.rotation.x = targetY;
-            galaxy.rotation.z = targetX;
-
-            renderer.render(scene, camera);
-        };
-
-        animate();
-
-        // GSAP Animations
-        gsap.to('.logo', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power4.out'
-        });
-
-        gsap.to('.tagline', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 0.3,
-            ease: 'power4.out'
-        });
-
-        gsap.to('.cta-buttons', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 0.6,
-            ease: 'power4.out'
-        });
-
-        gsap.to('.scroll-indicator', {
-            opacity: 0.7,
-            duration: 1,
-            delay: 1,
-            ease: 'power4.out'
-        });
-        
-
-        // Resize Handler
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+        // Redirect to main.html after animation
+        setTimeout(() => {
+            window.location.href = 'main.html';
+        }, 5000);
     </script>
 </body>
 </html>
