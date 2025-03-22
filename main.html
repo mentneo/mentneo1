@@ -914,7 +914,120 @@
             }
         }
 
-        
+        /* Update the mobile menu styles in the existing CSS */
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        /* Add these new styles for mobile navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s ease-in-out;
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .nav-links.active {
+                left: 0;
+                opacity: 1;
+                visibility: visible;
+                backdrop-filter: blur(10px);
+                background: rgba(17, 24, 39, 0.95);
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                margin: 15px 0;
+            }
+
+            .mobile-menu.active {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* Update the mobile menu styles in the CSS */
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            position: relative;
+            width: 30px;
+            height: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity: 0;
+                visibility: hidden;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+                opacity: 1;
+                visibility: visible;
+                background: rgba(17, 24, 39, 0.95);
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-menu {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 1.4rem;
+                margin: 20px 0;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active a {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .mobile-menu.active {
+                transform: rotate(180deg);
+            }
+
+            .navbar {
+                padding: 15px 5%;
+            }
+        }
     </style>
 </head>
 <body class="dark-mode">
@@ -938,7 +1051,13 @@
         </a>
     </div>
     <button class="theme-toggle" id="theme-toggle">🌙</button>
-    <div class="mobile-menu">☰</div>
+    <div class="mobile-menu" id="mobile-menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </div>
 </nav>
 
 <!-- Hero Section -->
@@ -1041,7 +1160,7 @@
         <h2 class="section-title fade-in">About Us</h2>
         <div class="about-content">
             <div class="about-image fade-in-left">
-                <img src="/api/placeholder/600/400" alt="About mentneo">
+                <img src="./PHOTOS/PHOTO-2025-03-22-19-12-42.jpg" alt="About mentneo">
             </div>
             <div class="about-text fade-in-right">
                 <h3>Pioneering Digital Transformation</h3>
@@ -1117,17 +1236,17 @@
         <div class="about-content">
             <div class="collaborators-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; width: 100%;">
                 <div class="collaborator-card" style="text-align: center; padding: 20px; background: var(--card-bg); border-radius: 15px; transition: var(--transition);">
-                    <img src="/api/placeholder/150/150" alt="Collaborator 1" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 15px;">
+                    <img src="./PHOTOS/WhatsApp Image 2025-03-22 at 19.56.45 (1).jpeg" alt="Collaborator 1" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 15px;">
                     <h3 style="color: var(--primary); margin-bottom: 10px;">web devolopment.</h3>
                     <p>Strategic Technology Partner</p>
                 </div>
                 <div class="collaborator-card" style="text-align: center; padding: 20px; background: var(--card-bg); border-radius: 15px; transition: var(--transition);">
-                    <img src="/api/placeholder/150/150" alt="Collaborator 2" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 15px;">
+                    <img src="./PHOTOS/WhatsApp Image 2025-03-22 at 19.56.46.jpeg" alt="Collaborator 2" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 15px;">
                     <h3 style="color: var(--primary); margin-bottom: 10px;">organic</h3>
                     <p>Research & Development Partner</p>
                 </div>
                 <div class="collaborator-card" style="text-align: center; padding: 20px; background: var(--card-bg); border-radius: 15px; transition: var(--transition);">
-                    <img src="/api/placeholder/150/150" alt="Collaborator 3" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 15px;">
+                    <img src="./PHOTOS/WhatsApp Image 2025-03-22 at 19.56.45.jpeg" alt="Collaborator 3" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 15px;">
                     <h3 style="color: var(--primary); margin-bottom: 10px;">  Solutions</h3>
                     <p>Implementation Partner</p>
                 </div>
@@ -1140,13 +1259,13 @@
         <h2 class="section-title fade-in">Our Projects</h2>
         <div class="gallery-container">
             <div class="gallery-card active">
-                <img src="./PHOTOS/31221293.jpg" alt="Project 1" class="gallery-img">
+                <img src="./PHOTOS/DALL·E 2025-03-22 19.26.39 - A futuristic chat application interface with a sleek and modern design. The background features a dark blue and neon purple gradient, symbolizing seam.webp" alt="Project 1" class="gallery-img">
             </div>
             <div class="gallery-card next">
-                <img src="/api/placeholder/800/500" alt="Project 2" class="gallery-img">
+                <img src="./PHOTOS/PHOTO-2025-03-22-19-12-42.jpg" alt="Project 2" class="gallery-img">
             </div>
             <div class="gallery-card">
-                <img src="/api/placeholder/800/500" alt="Project 3" class="gallery-img">
+                <img src="./PHOTOS/PHOTO-2025-03-22-19-54-44.jpg" alt="Project 3" class="gallery-img">
             </div>
             <div class="gallery-card">
                 <img src="/api/placeholder/800/500" alt="Project 4" class="gallery-img">
@@ -1214,7 +1333,7 @@
                         </div>
                         <div class="form-group">
                             <textarea id="message" class="form-control" placeholder="Your Message" rows="5" required
-                                style="width: 100%; padding: 15px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary); resize: none;"></textarea>
+                                style="width: 100%; padding: 15px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; background: var(--bg-primary); color: var (--text-primary); resize: none;"></textarea>
                         </div>
                         <button type="submit" class="cta-button" style="width: fit-content;">
                             Send Message
@@ -1245,7 +1364,7 @@
         <h2 class="section-title fade-in">Latest Updates</h2>
         <div class="updates-container" style="max-width: 1200px; margin: 0 auto;">
             <div class="updates-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="update-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
+                <div class="update-card" style="background: var (--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
                     <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 30, 2025</span>
                     <h3 style="margin: 10px 0; font-size: 1.4rem;">New Batch Starting Soon</h3>
                     <p style="margin-bottom: 15px;">Enrollments open for our next Full-Stack Development bootcamp. Early bird discounts available!</p>
@@ -1303,6 +1422,7 @@
                     <a href="./services.html">Services</a>
                     <a href="./project.html">Projects</a>
                     <a href="./contact.html">Contact</a>
+                    <a href="./terms.html">terms and conditions </a>
                 </div>
             </div>
             <div class="footer-col">
@@ -1347,12 +1467,61 @@
         });
 
         // Mobile Menu Toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
+        let isMenuOpen = false;
 
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenu.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                navLinks.classList.add('active');
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Animate menu items
+                document.querySelectorAll('.nav-links a').forEach((link, index) => {
+                    setTimeout(() => {
+                        link.style.opacity = '1';
+                        link.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            } else {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset menu items
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateY(20px)';
+                });
+            }
+        }
+
+        mobileMenu.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (isMenuOpen) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !e.target.closest('.nav-links') && !e.target.closest('.mobile-menu')) {
+                toggleMenu();
+            }
+        });
+
+        // Close menu on resize (if moving to desktop view)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && isMenuOpen) {
+                toggleMenu();
+            }
         });
 
         // Smooth Scrolling
