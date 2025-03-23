@@ -4,12 +4,13 @@ Allow: /assets/images/
 Allow: /*.html$
 Allow: /*.js$
 Allow: /*.css$
+Allow: /sitemap.xml$
 Disallow: /private/
 Disallow: /admin/
 Disallow: /temp/
 
-# Crawl Delay
-Crawl-delay: 10
+# Set crawl speed
+Crawl-delay: 5
 
 # Sitemap
 Sitemap: https://mentneo.com/sitemap.xml
