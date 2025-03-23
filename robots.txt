@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Allow: /assets/images/
+Sitemap: https://mentneo.com/sitemap.xml
