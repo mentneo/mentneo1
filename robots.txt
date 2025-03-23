@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
 Allow: /assets/images/
+Allow: /*.html$
+Allow: /*.js$
+Allow: /*.css$
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Crawl Delay
+Crawl-delay: 10
+
+# Sitemap
 Sitemap: https://mentneo.com/sitemap.xml
