@@ -9,8 +9,8 @@
     <meta name="author" content="mentneo">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXVDMYBHBS"></script>
     <script>
@@ -19,6 +19,8 @@
         gtag('js', new Date());
         gtag('config', 'G-NXVDMYBHBS');
     </script>
+    <!-- Add Firebase Auth script -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <style>
         :root {
             --primary: #6366f1;
@@ -333,22 +335,22 @@
             <form id="contactForm">
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                     <div class="form-group floating-label">
-                        <input type="text" id="name" class="form-control" placeholder=" " required>
+                        <input type="text" id="name" name="name" class="form-control" placeholder=" " required>
                         <label for="name">Your Name</label>
                     </div>
                     <div class="form-group floating-label">
-                        <input type="email" id="email" class="form-control" placeholder=" " required>
+                        <input type="email" id="email" name="email" class="form-control" placeholder=" " required>
                         <label for="email">Email Address</label>
                     </div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                     <div class="form-group floating-label">
-                        <input type="tel" id="phone" class="form-control" placeholder=" " required>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder=" " required>
                         <label for="phone">Phone Number</label>
                     </div>
                     <div class="form-group">
-                        <select class="form-control" required>
+                        <select id="service" name="service" class="form-control" required>
                             <option value="">Select Service</option>
                             <option value="web">Web Development</option>
                             <option value="mobile">Mobile Development</option>
@@ -361,7 +363,7 @@
 
                 <div class="form-group">
                     <label>Project Details</label>
-                    <textarea class="form-control" rows="5" placeholder="Tell us about your project or inquiry..." required></textarea>
+                    <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us about your project or inquiry..." required></textarea>
                 </div>
 
                 <div class="form-group" style="margin-bottom: 15px;">
@@ -415,16 +417,16 @@
 
     <script>
         // Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCf0Z27yRLiE1pRPe4kDJPDvaV_dLlkl84",
-  authDomain: "qwedsfvb-6002e.firebaseapp.com",
-  projectId: "qwedsfvb-6002e",
-  storageBucket: "qwedsfvb-6002e.firebasestorage.app",
-  messagingSenderId: "970311760029",
-  appId: "1:970311760029:web:50b081a7f98e34a41c7c74",
-  measurementId: "G-RJHDRBZFF8"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyDSPFgDFQ-eTN31wdFXGya6vxKHJl-0Pf4",
+            authDomain: "insta-96106.firebaseapp.com",
+            projectId: "insta-96106",
+            storageBucket: "insta-96106.firebasestorage.app",
+            messagingSenderId: "456265936033",
+            appId: "1:456265936033:web:c44452e79f8079e2f994e0",
+            measurementId: "G-EJCT9GXSVH"
+        };
+
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
@@ -432,43 +434,44 @@ const firebaseConfig = {
         // Handle form submission
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                subject: document.getElementById('subject').value,
-                message: document.getElementById('message').value,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-            };
-
-            try {
-                await db.collection('contacts').add(formData);
-                alert('Message sent successfully!');
-                e.target.reset();
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error sending message. Please try again.');
-            }
-        });
-
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
             const btn = e.target.querySelector('.btn-submit');
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                btn.style.transform = 'scale(1)';
-                const successMessage = document.getElementById('successMessage');
-                successMessage.classList.add('show');
+            btn.disabled = true;
+            
+            try {
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value.trim(),
+                    createdAt: new Date().toISOString(),
+                    status: 'new',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                };
+
+                // Save to Firestore
+                await db.collection('contactForms').add(formData);
                 
-                // Add confetti effect
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.textContent = 'Message sent successfully! 🎉';
+                successMessage.classList.add('show');
                 createConfetti();
+                e.target.reset();
                 
                 setTimeout(() => {
                     successMessage.classList.remove('show');
-                    e.target.reset();
                 }, 3000);
-            }, 150);
+                
+            } catch (error) {
+                console.error('Submission Error:', error);
+                const errorMessage = document.getElementById('successMessage');
+                errorMessage.textContent = 'Error sending message. Please try again.';
+                errorMessage.style.borderLeft = '4px solid var(--error)';
+                errorMessage.classList.add('show');
+            } finally {
+                btn.disabled = false;
+            }
         });
 
         // Info Card Animation
