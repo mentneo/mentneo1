@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mentneo - Welcome</title>
-    <meta name="description" content="Welcome to mentneo, the platform for future technologies and innovative learning.">
-    <meta name="keywords" content="mentneo, welcome, future technologies, learning">
+    <title>mentneo - Build. Learn. Launch.</title>
+    <meta name="description" content="Welcome to mentneo, where students become creators. From stunning websites to skill-boosting courses, we power your tech journey.">
+    <meta name="keywords" content="mentneo, tech learning, student tech, web development, courses, startup accelerator">
     <meta name="author" content="mentneo">
     <meta name="mentneo is the learning platform" content="mentneo is the learning platform" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../mentneo1/PHOTOS/MENTNEO.png">
+    <link rel="apple-touch-icon" href="../mentneo1/PHOTOS/MENTNEO.png">
+    <link rel="shortcut icon" type="image/png" href="../mentneo1/PHOTOS/MENTNEO.png">
         
-    <title>mentneo - Welcome</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXVDMYBHBS"></script>
     <script>
@@ -27,8 +31,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0f172a;
-            color: #ffffff;
+            background: #F8F9FA;
+            color: #1A1A1A;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -44,7 +48,7 @@
         .logo {
             font-size: 5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            background: linear-gradient(135deg, #F72585, #7209B7);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -56,7 +60,7 @@
         .tagline {
             margin-top: 1rem;
             font-size: 1.5rem;
-            color: #94a3b8;
+            color: #6C757D;
             opacity: 0;
             animation: fadeIn 1s ease forwards 1.5s;
         }
@@ -64,7 +68,7 @@
         .loading-bar {
             width: 200px;
             height: 3px;
-            background: #1e293b;
+            background: #e9ecef;
             margin: 2rem auto;
             position: relative;
             border-radius: 3px;
@@ -77,13 +81,13 @@
             top: 0;
             height: 100%;
             width: 0;
-            background: linear-gradient(90deg, #6366f1, #4f46e5);
+            background: linear-gradient(90deg, #F72585, #3A0CA3);
             animation: loading 4s linear forwards;
         }
 
         .powered-by {
             font-size: 0.9rem;
-            color: #64748b;
+            color: #6C757D;
             opacity: 0;
             animation: fadeIn 1s ease forwards 2s;
         }
@@ -114,6 +118,17 @@
             }
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .particles {
             position: fixed;
             top: 0;
@@ -128,9 +143,17 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #6366f1;
+            background: #7209B7;
             border-radius: 50%;
             animation: float 20s linear infinite;
+        }
+
+        .particle:nth-child(even) {
+            background: #F72585;
+        }
+
+        .particle:nth-child(3n) {
+            background: #3A0CA3;
         }
 
         @keyframes float {
@@ -157,12 +180,13 @@
     </div>
 
     <div class="intro-animation">
+        <img src="../mentneo1/PHOTOS/MENTNEO.png" alt="mentneo logo" class="logo-img" width="100" style="margin-bottom: 20px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s;">
         <h1 class="logo">mentneo</h1>
-        <p class="tagline">Building Future Technologies</p>
+        <p class="tagline">Build. Learn. Launch — with Mentneo.</p>
         <div class="loading-bar">
             <div class="loading-progress"></div>
         </div>
-        <p class="powered-by">Powered by Innovation</p>
+        <p class="powered-by">Where Students Become Creators</p>
     </div>
 
     <script>
