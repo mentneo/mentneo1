@@ -803,51 +803,37 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--bg-secondary);
+            .navbar {
+                padding: 15px 5%;
+            }
+            
+            .contact-options {
+                display: none;
+            }
+            
+            .nxtwave-banner {
+                top: 20px;
+                padding: 10px;
+            }
+            
+            .banner-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 5px 0;
+                gap: 10px;
+            }
+            
+            .banner-content p {
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding-top: 100px;
+            }
+            
+            .hero-buttons {
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                transition: 0.5s;
-                gap: 40px;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .gallery-card {
-                width: 90%;
-                height: 350px;
-            }
-
-            .gallery-prev {
-                left: 10px;
-            }
-
-            .gallery-next {
-                right: 10px;
             }
         }
 
@@ -944,55 +930,6 @@
             display: none;
             font-size: 1.8rem;
             cursor: pointer;
-            color: var (--text-primary);
-            z-index: 1001;
-            transition: transform 0.3s ease;
-        }
-
-        /* Add these new styles for mobile navigation */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100vh;
-                background: var(--bg-secondary);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: 0.3s ease-in-out;
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            .nav-links.active {
-                left: 0;
-                opacity: 1;
-                visibility: visible;
-                backdrop-filter: blur(10px);
-                background: rgba(17, 24, 39, 0.95);
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                margin: 15px 0;
-            }
-
-            .mobile-menu.active {
-                transform: rotate(90deg);
-            }
-        }
-
-        /* Update the mobile menu styles in the CSS */
-        .mobile-menu {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
             color: var(--text-primary);
             z-index: 1001;
             transition: all 0.3s ease;
@@ -1068,7 +1005,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM36 0V4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             opacity: 0.5;
         }
 
@@ -1319,12 +1256,11 @@
     <div class="nav-links">
         <a href="./main.html">Home</a>
         <a href="./about.html">About</a>
-        <a href="./knowmore.html">Curriculum</a>
-        <a href="./mentor.html">mentor</a>
+        <a href="./services.html">Services</a>
+        <a href="./project.html">Projects</a>
+        <a href="./mentor.html">Mentor</a>
+        <a href="./course.html">Course</a>
         <a href="./contact.html">Contact</a>
-
-
-        
     </div>
     <div class="contact-options">
         <a href="tel:+919182146476" class="call-button">
@@ -1332,7 +1268,7 @@
         </a>
     </div>
     <button class="theme-toggle" id="theme-toggle">🌙</button>
-    <div class="mobile-menu" id="mobile-menu"></div>
+    <div class="mobile-menu" id="mobile-menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -1414,25 +1350,67 @@
     <!-- What We Do Section -->
     <section id="what-we-do" class="about">
         <h2 class="section-title fade-in">What We Do at mentneo</h2>
+        
+        <!-- Enhanced section introduction -->
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 50px; padding: 0 20px;">
+            <p style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 20px;">
+                At mentneo, we offer comprehensive services designed to help students become skilled developers and support businesses in their digital transformation journey.
+            </p>
+        </div>
+        
         <div class="timeline" style="max-width: 800px; margin: 0 auto; position: relative;">
+            <!-- Timeline line -->
+            <div style="position: absolute; top: 0; bottom: 0; left: 10px; width: 2px; background: var(--primary); opacity: 0.5;"></div>
+            
             <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
-                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; margin-left: 20px; flex: 1;">
+                <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
+                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
                     <h3 style="color: var(--primary); margin-bottom: 10px;">Full-Stack Development Training</h3>
-                    <p>Comprehensive training in MERN Stack, Python, Java, and more.</p>
+                    <p>Comprehensive training in MERN Stack, Python, Java, and more. Our curriculum covers front-end, back-end, databases, and deployment strategies with hands-on projects and real-world applications.</p>
                 </div>
             </div>
+            
             <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
-                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; margin-left: 20px; flex: 1;">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Web Services</h3>
-                    <p>Custom web development solutions for businesses of all sizes.</p>
+                <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
+                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Web Services & Development</h3>
+                    <p>Custom web development solutions for businesses of all sizes. We build responsive websites, web applications, e-commerce platforms, and content management systems tailored to your specific needs.</p>
                 </div>
             </div>
+            
             <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
-                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; margin-left: 20px; flex: 1;">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Career Support</h3>
-                    <p>Job placement assistance and career guidance for our students.</p>
+                <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
+                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Career Support & Mentorship</h3>
+                    <p>Job placement assistance and career guidance for our students. Our mentors provide portfolio reviews, interview preparation, and connections to industry opportunities to help launch your tech career.</p>
                 </div>
             </div>
+            
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+                <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
+                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Mobile App Development</h3>
+                    <p>End-to-end mobile application development for iOS and Android platforms. We use React Native, Flutter, and native development approaches to create engaging, high-performance mobile experiences.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+                <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
+                <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Technical Consulting</h3>
+                    <p>Expert advice on technology selection, architecture planning, and implementation strategies. We help businesses make informed decisions about their technology stack and digital transformation initiatives.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call-to-Action button -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="./services.html" class="cta-button" style="display: inline-flex; align-items: center; gap: 10px;">
+                Explore Our Services
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
         </div>
     </section>
 
@@ -1566,42 +1544,6 @@
                     <p>9182146476</p>
                 </div>
             </div>
-            </div>
-
-            <!-- Contact Form and Map Container -->
-            <div class="contact-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);">
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper" style="padding: 40px;"></div>
-                    <h3 style="margin-bottom: 30px; color: var(--primary);">Send us a Message</h3>
-                    <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div class="form-group">
-                                <input type="text" id="name" class="form-control" placeholder="Your Name" required
-                                    style="width: 100%; padding: 15px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary);">
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Your Email" required
-                                    style="width: 100%; padding: 15px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary);">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required
-                                style="width: 100%; padding: 15px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; background: var(--bg-primary); color: var(--text-primary);">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" class="form-control" placeholder="Your Message" rows="5" required
-                                style="width: 100%; padding: 15px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; background: var(--bg-primary); color: var (--text-primary); resize: none;"></textarea>
-                        </div>
-                        <button type="submit" class="cta-button" style="width: fit-content;">
-                            Send Message
-                            <span style="margin-left: 10px;">→</span>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Map -->
-              
-            </div>
 
             <!-- Social Links -->
             <div class="social-links-container">
@@ -1612,40 +1554,6 @@
                     <a href="https://www.linkedin.com/in/ment-neo-602744353/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="social-link">IN</a>
                     <a href="https://www.instagram.com/mentneo/?igsh=MTRwYWxqcjFldjI4cw%3D%3D" class="social-link">IG</a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Get in Touch Section -->
-    <section id="contact" class="get-in-touch">
-        <div class="contact-container">
-            <div class="contact-text">
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="section-desc">Ready to start your next project? Let's create something amazing together.</p>
-                <div class="quick-contact">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email Us</h4>
-                            <a href="mailto:info@mentneo.com">info@mentneo.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Call Us</h4>
-                            <a href="tel:+911234567890">+91 123 456 7890</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-cta">
-                <a href="contact.html" class="cta-button">
-                    <span>Start a Project</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
-                    </svg>
-                </a>
             </div>
         </div>
     </section>
@@ -2011,10 +1919,13 @@
             });
         }, { threshold: 0.2 });
 
+
+
         updateCards.forEach(card => {
             updateObserver.observe(card);
             
             // Enhanced hover effects
+
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-10px)';
                 card.style.boxShadow = '0 10px 30px rgba(99, 102, 241, 0.2)';
