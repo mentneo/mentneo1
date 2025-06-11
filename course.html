@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mentneo - Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXVDMYBHBS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NXVDMYBHBS');
+    </script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --dark: #111827;
+            --light: #f3f4f6;
+            --text-dark: #1f2937;
+            --text-light: #f9fafb;
+            --success: #10b981;
+            --error: #ef4444;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* Course Hero Section */
+        .course-hero {
+            min-height: 60vh;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM36 0V4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .course-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .course-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.2s;
+        }
+
+        .search-container {
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards 0.4s;
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 15px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background: var(--secondary);
+        }
+
+        /* Course Filters */
+        .course-filters {
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .filter-title {
+            margin-bottom: 30px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Course Grid */
+        .courses-section {
+            padding: 20px 5% 80px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .course-card:hover .course-image img {
+            transform: scale(1.1);
+        }
+
+        .course-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .course-level {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            background: rgba(99, 102, 241, 0.9);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-category {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .course-card:hover .course-title {
+            color: var(--primary);
+        }
+
+        .course-description {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .meta-item i {
+            color: var(--primary);
+        }
+
+        .course-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .course-cta {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .enroll-btn {
+            flex: 1;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .enroll-btn:hover {
+            background: var(--secondary);
+        }
+
+        .wishlist-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .wishlist-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Statistics Section */
+        .statistics {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .stat-card {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-title {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 5%;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1601972602288-3be527b4f25a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center center/cover;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 24, 39, 0.8);
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .cta-text {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .cta-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Back Button */
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);
+            background: var(--secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .course-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+
+            .search-input {
+                border-radius: 20px 20px 0 0;
+            }
+
+            .search-btn {
+                border-radius: 0 0 20px 20px;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="course-hero">
+        <div class="hero-content">
+            <h1>Explore Our Courses</h1>
+            <p>Enhance your skills with our comprehensive courses taught by industry experts</p>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="course-search" placeholder="Search for courses...">
+                <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Filters -->
+    <section class="course-filters">
+        <h2 class="filter-title">Browse by Category</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Courses</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+            <button class="filter-btn" data-filter="ai-ml">AI & ML</button>
+            <button class="filter-btn" data-filter="data-science">Data Science</button>
+        </div>
+    </section>
+
+    <!-- Course Grid -->
+    <section class="courses-section">
+        <div class="courses-grid" id="courses-grid">
+            <!-- Courses will be populated here -->
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <h2>Why Choose mentneo Courses?</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number">5000+</div>
+                <div class="stat-title">Students Enrolled</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="stat-number">50+</div>
+                <div class="stat-title">Courses Available</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="stat-number">95%</div>
+                <div class="stat-title">Completion Rate</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="stat-number">85%</div>
+                <div class="stat-title">Job Placement</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Start Your Learning Journey?</h2>
+            <p class="cta-text">Join thousands of students who are already advancing their careers with mentneo courses.</p>
+            <a href="./contact.html" class="cta-btn">Contact Us for Enrollment</a>
+        </div>
+    </section>
+
+    <a href="main.html" class="back-btn">Back to Main</a>
+
+    <script>
+        // Course Data
+        const courses = [
+            {
+                id: 1,
+                title: "HTML & CSS Fundamentals",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Beginner",
+                duration: "4 weeks",
+                lessons: 24,
+                description: "Master the basics of web development with HTML5 and CSS3.",
+                price: "₹3,999"
+            },
+            {
+                id: 2,
+                title: "JavaScript for Beginners",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Beginner",
+                duration: "6 weeks",
+                lessons: 36,
+                description: "Learn JavaScript programming from scratch and build interactive websites.",
+                price: "₹4,999"
+            },
+            {
+                id: 3,
+                title: "React.js Developer Course",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Intermediate",
+                duration: "8 weeks",
+                lessons: 48,
+                description: "Master React.js and build modern, responsive web applications.",
+                price: "₹7,999"
+            },
+            {
+                id: 4,
+                title: "MERN Stack Development",
+                category: "fullstack",
+                image: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Advanced",
+                duration: "12 weeks",
+                lessons: 72,
+                description: "Become a full-stack developer with MongoDB, Express, React, and Node.js.",
+                price: "₹12,999"
+            },
+            {
+                id: 5,
+                title: "Machine Learning Basics",
+                category: "ai-ml",
+                image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Intermediate",
+                duration: "10 weeks",
+                lessons: 60,
+                description: "Learn the fundamentals of machine learning algorithms and applications.",
+                price: "₹9,999"
+            },
+            {
+                id: 6,
+                title: "Data Science with Python",
+                category: "data-science",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Intermediate",
+                duration: "12 weeks",
+                lessons: 72,
+                description: "Master data analysis, visualization, and machine learning with Python.",
+                price: "₹10,999"
+            },
+            {
+                id: 7,
+                title: "Deep Learning Specialization",
+                category: "ai-ml",
+                image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Advanced",
+                duration: "16 weeks",
+                lessons: 96,
+                description: "Advanced deep learning concepts including neural networks and computer vision.",
+                price: "₹15,999"
+            },
+            {
+                id: 8,
+                title: "Full Stack Java Development",
+                category: "fullstack",
+                image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Intermediate",
+                duration: "14 weeks",
+                lessons: 84,
+                description: "Learn full stack development with Java, Spring Boot, and React.",
+                price: "₹13,999"
+            },
+            {
+                id: 9,
+                title: "CSS Advanced Concepts",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Intermediate",
+                duration: "6 weeks",
+                lessons: 36,
+                description: "Master advanced CSS techniques, animations, and responsive design.",
+                price: "₹5,999"
+            },
+            {
+                id: 10,
+                title: "Big Data Analytics",
+                category: "data-science",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Advanced",
+                duration: "12 weeks",
+                lessons: 72,
+                description: "Learn to process and analyze large datasets using Hadoop and Spark.",
+                price: "₹14,999"
+            },
+            {
+                id: 11,
+                title: "Natural Language Processing",
+                category: "ai-ml",
+                image: "https://images.unsplash.com/photo-1677442135136-10baa9b755fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Advanced",
+                duration: "10 weeks",
+                lessons: 60,
+                description: "Master NLP techniques to build language understanding applications.",
+                price: "₹12,499"
+            },
+            {
+                id: 12,
+                title: "Advanced JavaScript & ES6+",
+                category: "web",
+                image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                level: "Intermediate",
+                duration: "8 weeks",
+                lessons: 48,
+                description: "Deep dive into modern JavaScript features, patterns, and best practices.",
+                price: "₹7,499"
+            }
+        ];
+
+        // Function to populate courses
+        function populateCourses(filter = 'all') {
+            const coursesGrid = document.getElementById('courses-grid');
+            coursesGrid.innerHTML = '';
+            
+            const filteredCourses = (filter === 'all') ? 
+                courses : 
+                courses.filter(course => course.category === filter);
+            
+            filteredCourses.forEach((course, index) => {
+                const courseCard = document.createElement('div');
+                courseCard.className = 'course-card';
+                courseCard.style.setProperty('--delay', index + 1);
+                
+                courseCard.innerHTML = `
+                    <div class="course-image">
+                        <img src="${course.image}" alt="${course.title}">
+                        <div class="course-level">${course.level}</div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">${getCategoryName(course.category)}</div>
+                        <h3 class="course-title">${course.title}</h3>
+                        <p class="course-description">${course.description}</p>
+                        <div class="course-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>${course.duration}</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-book-open"></i>
+                                <span>${course.lessons} lessons</span>
+                            </div>
+                        </div>
+                        <div class="course-price">${course.price}</div>
+                        <div class="course-cta">
+                            <button class="enroll-btn">Enroll Now</button>
+                            <button class="wishlist-btn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                coursesGrid.appendChild(courseCard);
+            });
+            
+            // If no courses found
+            if (filteredCourses.length === 0) {
+                coursesGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; font-size: 1.2rem; padding: 40px 0;">No courses found for this category.</p>`;
+            }
+        }
+
+        // Function to get category name
+        function getCategoryName(category) {
+            const categories = {
+                'web': 'Web Development',
+                'fullstack': 'Full Stack',
+                'ai-ml': 'AI & Machine Learning',
+                'data-science': 'Data Science'
+            };
+            return categories[category] || category;
+        }
+
+        // Initialize with all courses
+        populateCourses();
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active class
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                button.classList.add('active');
+                
+                // Filter courses
+                const filter = button.getAttribute('data-filter');
+                populateCourses(filter);
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('course-search');
+        const searchButton = document.querySelector('.search-btn');
+
+        function searchCourses() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const coursesGrid = document.getElementById('courses-grid');
+            coursesGrid.innerHTML = '';
+            
+            // Clear active filter
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            
+            if (searchTerm === '') {
+                populateCourses();
+                return;
+            }
+            
+            const filteredCourses = courses.filter(course => {
+                return (
+                    course.title.toLowerCase().includes(searchTerm) ||
+                    course.description.toLowerCase().includes(searchTerm) ||
+                    getCategoryName(course.category).toLowerCase().includes(searchTerm)
+                );
+            });
+            
+            if (filteredCourses.length === 0) {
+                coursesGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px 0;">
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">No courses found matching "${searchInput.value}"</p>
+                        <button class="filter-btn" onclick="populateCourses()">Show All Courses</button>
+                    </div>
+                `;
+            } else {
+                filteredCourses.forEach((course, index) => {
+                    const courseCard = document.createElement('div');
+                    courseCard.className = 'course-card';
+                    courseCard.style.setProperty('--delay', index + 1);
+                    
+                    courseCard.innerHTML = `
+                        <div class="course-image">
+                            <img src="${course.image}" alt="${course.title}">
+                            <div class="course-level">${course.level}</div>
+                        </div>
+                        <div class="course-content">
+                            <div class="course-category">${getCategoryName(course.category)}</div>
+                            <h3 class="course-title">${course.title}</h3>
+                            <p class="course-description">${course.description}</p>
+                            <div class="course-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>${course.duration}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-book-open"></i>
+                                    <span>${course.lessons} lessons</span>
+                                </div>
+                            </div>
+                            <div class="course-price">${course.price}</div>
+                            <div class="course-cta">
+                                <button class="enroll-btn">Enroll Now</button>
+                                <button class="wishlist-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    coursesGrid.appendChild(courseCard);
+                });
+            }
+        }
+
+        searchButton.addEventListener('click', searchCourses);
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                searchCourses();
+            }
+        });
+
+        // Wishlist functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.wishlist-btn')) {
+                const wishlistBtn = e.target.closest('.wishlist-btn');
+                const icon = wishlistBtn.querySelector('i');
+                
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    icon.style.color = '#ef4444';
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    icon.style.color = '';
+                }
+            }
+        });
+
+        // Enrollment button functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('enroll-btn')) {
+                alert('Thank you for your interest! Please contact us to complete the enrollment process.');
+            }
+        });
+
+        // Intersection Observer for animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s forwards';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe course cards after they're created
+        setTimeout(() => {
+            document.querySelectorAll('.course-card').forEach(card => {
+                observer.observe(card);
+            });
+        }, 100);
+    </script>
+</body>
+</html>
