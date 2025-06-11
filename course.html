@@ -503,6 +503,9 @@
             }
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
 </head>
 <body>
     <!-- Hero Section -->
@@ -588,6 +591,7 @@
 
     <a href="main.html" class="back-btn">Back to Main</a>
 
+    <script src="./js/firebase-config.js"></script>
     <script>
         // Course Data
         const courses = [
@@ -905,10 +909,41 @@
         // Enrollment button functionality
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('enroll-btn')) {
-                alert('Thank you for your interest! Please contact us to complete the enrollment process.');
+              // Get course details from the parent elements
+              const courseCard = e.target.closest('.course-card');
+              const courseTitle = courseCard.querySelector('.course-title').textContent;
+              const courseCategory = courseCard.querySelector('.course-category').textContent;
+              const coursePrice = courseCard.querySelector('.course-price').textContent;
+              
+              // Show a dialog to collect user information
+              const userName = prompt("Please enter your name:");
+              if (!userName) return;
+              
+              const userEmail = prompt("Please enter your email address:");
+              if (!userEmail) return;
+              
+              const userPhone = prompt("Please enter your phone number (optional):");
+              
+              // Store the course request in Firebase
+              db.collection('course_requests').add({
+                course_title: courseTitle,
+                course_category: courseCategory,
+                course_price: coursePrice,
+                user_name: userName,
+                user_email: userEmail,
+                user_phone: userPhone || 'Not provided',
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                status: 'pending'
+              })
+              .then(() => {
+                alert("Thank you for your interest! We'll contact you soon about the " + courseTitle + " course.");
+              })
+              .catch(error => {
+                console.error("Error adding course request: ", error);
+                alert("There was a problem submitting your request. Please try again later.");
+              });
             }
-        });
-
+          });
         // Intersection Observer for animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

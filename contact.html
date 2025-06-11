@@ -584,6 +584,13 @@
             }
         }
     </style>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics-compat.js"></script>
 </head>
 <body class="dark-mode">
     <!-- Navigation -->
@@ -848,7 +855,7 @@
             observer.observe(element);
         });
 
-        // Form Validation
+        // Form Validation and Firebase Submission
         const contactForm = document.getElementById('contact-form');
         const successMessage = document.getElementById('success-message');
 
@@ -884,42 +891,44 @@
             }
 
             if (isValid) {
-                // Form is valid, show success message
-                successMessage.style.display = 'block';
-                contactForm.reset();
-                
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
-                
-                // Here you would typically send the form data to your backend
-                // For example:
-                /*
-                fetch('your-api-endpoint', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
+                try {
+                    // Create data object for Firebase
+                    const contactData = {
                         name: name.value,
                         email: email.value,
-                        phone: document.getElementById('phone').value,
-                        message: message.value
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    successMessage.style.display = 'block';
-                    contactForm.reset();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-                */
+                        phone: document.getElementById('phone').value || 'Not provided',
+                        message: message.value,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        status: 'unread'
+                    };
+                    
+                    // Save to Firebase
+                    db.collection('contact_submissions').add(contactData)
+                        .then(() => {
+                            // Show success message
+                            successMessage.style.display = 'block';
+                            contactForm.reset();
+                            
+                            // Hide success message after 5 seconds
+                            setTimeout(() => {
+                                successMessage.style.display = 'none';
+                            }, 5000);
+                            
+                            console.log('Form submission saved to Firebase successfully');
+                        })
+                        .catch(error => {
+                            console.error("Error adding contact submission: ", error);
+                            alert("There was a problem submitting your form. Please try again later.");
+                        });
+                } catch (error) {
+                    console.error("Error in Firebase submission: ", error);
+                    alert("There was a problem with our system. Please try again later or contact us directly via phone.");
+                }
             }
         });
     </script>
+    
+    <!-- Firebase Config -->
+    <script src="./js/firebase-config.js"></script>
 </body>
 </html>
