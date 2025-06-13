@@ -9,10 +9,13 @@ const firebaseConfig = {
   measurementId: "G-8T3CMHE740"
 };
 
-// Initialize Firebase
+// Initialize Firebase with error handling
 try {
-  firebase.initializeApp(firebaseConfig);
-  console.log('Firebase initialized successfully');
+  // Check if Firebase has already been initialized
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+    console.log('Firebase initialized successfully');
+  }
   
   // Initialize services
   const analytics = firebase.analytics();

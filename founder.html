@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Founder - mentneo</title>
+    <meta name="description" content="Meet the visionary founder behind mentneo, driving innovation and excellence in tech education and services.">
+    
+    <!-- Favicon Package -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#7209B7">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#7209B7">
+    <meta name="msapplication-config" content="favicon/browserconfig.xml">
+    <meta name="theme-color" content="#F8F9FA">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Additional SEO Metadata -->
+    <meta property="og:title" content="Our Founder - mentneo">
+    <meta property="og:description" content="Meet the visionary founder behind mentneo, driving innovation and excellence in tech education.">
+    <meta property="og:image" content="https://mentneo.com/PHOTOS/founder.jpg">
+    <meta property="og:url" content="https://mentneo.com/founder.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Founder - mentneo">
+    <meta name="twitter:description" content="Meet the visionary founder behind mentneo, driving innovation and excellence in tech education.">
+    <meta name="twitter:image" content="https://mentneo.com/PHOTOS/founder.jpg">
+    <meta name="author" content="Abhiram Yeduru">
+    <meta name="keywords" content="mentneo founder, Abhiram Yeduru, tech education, coding bootcamp, mentorship, tech entrepreneur">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXVDMYBHBS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NXVDMYBHBS');
+    </script>
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --dark: #111827;
+            --light: #f3f4f6;
+            --text-dark: #1f2937;
+            --text-light: #f9fafb;
+            --success: #10b981;
+            --error: #ef4444;
+            --transition: all 0.3s ease;
+        }
+
+        /* Light/Dark Mode Variables */
+        body.light-mode {
+            --bg-primary: var(--light);
+            --bg-secondary: #ffffff;
+            --text-primary: var(--text-dark);
+            --card-bg: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-primary: var(--dark);
+            --bg-secondary: #1f2937;
+            --text-primary: var(--text-light);
+            --card-bg: #1f2937;
+            --nav-bg: rgba(17, 24, 39, 0.8);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding-top: 100px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM36 0V4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            top: 20px;
+            left: 20px;
+            z-index: 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 5%;
+            background: var(--bg-secondary);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        /* Journey Section */
+        .journey-section {
+            padding: 100px 5%;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .journey-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .journey-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary);
+            top: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 30px;
+            border-radius: 15px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            left: 55%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Vision & Philosophy */
+        .vision-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
+            text-align: center;
+        }
+
+        .vision-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vision-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .vision-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            height: 70px;
+            width: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.1);
+            display: inline-block;
+        }
+
+        .vision-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 100px 5%;
+            background: var(--bg-secondary);
+            text-align: center;
+            position: relative;
+        }
+
+        .quote-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            position: relative;
+            padding: 0 30px;
+        }
+
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            position: absolute;
+            font-size: 4rem;
+            font-family: serif;
+            color: var(--primary);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .quote-text::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .quote-text::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Connect Section */
+        .connect-section {
+            padding: 100px 5%;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Call-to-Action */
+        .cta-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .cta-text {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            padding: 50px 5% 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        /* Contact Options */
+        .contact-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .call-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .call-button:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            margin-left: 15px;
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+            transform: rotate(30deg);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            z-index: 1001;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-image::before {
+                display: none;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                left: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            
+            .journey-timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                opacity: 0;
+                visibility: hidden;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+                opacity: 1;
+                visibility: visible;
+                background: rgba(17, 24, 39, 0.95);
+                backdrop-filter: blur(10px);
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .contact-options {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .stat-card {
+                min-width: 100%;
+            }
+            
+            .vision-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote-text {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="./main.html" class="logo">mentneo</a>
+        <div class="nav-links">
+            <a href="./main.html">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./services.html">Services</a>
+            <a href="./project.html">Projects</a>
+            <a href="./founder.html">Founder</a>
+            <a href="./mentor.html">Mentor</a>
+            <a href="./course.html">Course</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./faq.html">FAQ</a>
+        </div>
+        <div class="contact-options">
+            <a href="tel:+919182146476" class="call-button">
+                <i class="fas fa-phone-alt"></i> Request a Call
+            </a>
+        </div>
+        <button class="theme-toggle" id="theme-toggle">🌙</button>
+        <div class="mobile-menu" id="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1 class="hero-title">Abhiram Yeduru</h1>
+                <span style="font-size: 1.5rem; color: var(--primary); margin-bottom: 20px; display: block;">Founder & CEO of mentneo</span>
+                <p class="hero-subtitle">Visionary technologist, educator, and entrepreneur with a passion for democratizing quality tech education and shaping the next generation of developers.</p>
+                <div class="hero-buttons" style="display: flex; gap: 20px; margin-top: 30px;">
+                    <a href="#journey" class="cta-btn">My Journey</a>
+                    <a href="#connect" class="cta-btn" style="background: transparent; color: var(--primary); border: 2px solid var(--primary);">Connect with Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="./PHOTOS/founder .jpeg" alt="Abhiram Yeduru - Founder of mentneo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 class="section-title">Impact & Achievements</h2>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">8+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Students Mentored</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Tech Partnerships</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="journey-section">
+        <h2 class="section-title">My Journey</h2>
+        <div class="section-container">
+            <div class="journey-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3 class="timeline-title">Academic Excellence</h3>
+                        <p>🌟 My 2024 Tech + Academic Journey (So Far)
+                            By: Abhi Yeduru | Founder & CEO – Mentneo
+                            👨‍🎓 B.Tech 1st Year | AI & Data Science | JNTUK R23.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2017</div>
+                        <h3 class="timeline-title">Teaching Passion</h3>
+                        <p>Teaching isn’t just a skill for me — it’s my superpower.
+                            I love breaking down complex tech topics into simple, relatable concepts. Whether it’s HTML, CSS, React, Firebase, or full-stack development, I don’t just teach—I guide, mentor, and vibe with students like a friend who’s just a few steps ahead..</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3 class="timeline-title">Market Gap Identification</h3>
+                        <p>Recognized the significant gap between academic education and industry requirements. Started researching how to build a comprehensive yet affordable tech education platform focused on real-world skills.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3 class="timeline-title">mentneo Is Born</h3>
+                        <p>Founded mentneo with the mission to provide affordable, high-quality education in full-stack development and related technologies. Started with a small batch of 20 students, focusing on personalized learning.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3 class="timeline-title">Growth & Expansion</h3>
+                        <p>Expanded mentneo's curriculum to include specialized courses and introduced industry mentorship programs. Formed partnerships with tech companies to enhance student placement opportunities.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3 class="timeline-title">Vision for the Future</h3>
+                        <p>Working on integrating AI-driven learning paths and expanding mentneo's reach globally. Focused on creating more scholarship opportunities and innovative learning methodologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Philosophy -->
+    <section class="vision-section">
+        <h2 class="section-title">My Vision & Philosophy</h2>
+        <div class="vision-cards">
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="vision-title">Vision</h3>
+                <p>To create a world where quality technical education is accessible to everyone regardless of their background or financial constraints, enabling individuals to realize their potential and contribute to the digital economy.</p>
+            </div>
+            
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 class="vision-title">Mission</h3>
+                <p>To provide affordable, high-quality education with personalized mentorship, practical projects, and industry connections that prepare students for successful tech careers in an ever-evolving landscape.</p>
+            </div>
+            
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3 class="vision-title">Philosophy</h3>
+                <p>I believe that education should be practical, engaging, and outcome-focused. Technology education must constantly evolve to stay relevant, and mentorship is as important as curriculum in student success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="quote-container">
+            <p class="quote-text">Technology has the power to transform lives, but only when knowledge is accessible to all. At mentneo, we're not just teaching code—we're empowering the next generation of digital creators to build a better world.</p>
+            <p class="quote-author">- Abhiram Yeduru</p>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="connect" class="connect-section">
+        <h2 class="section-title">Connect With Me</h2>
+        <p style="max-width: 700px; margin: 0 auto 30px;">I'm always eager to connect with students, fellow educators, industry professionals, and anyone passionate about tech education. Reach out through any of these platforms:</p>
+        
+        <div class="social-links">
+            <a href="https://www.youtube.com" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/home" target="_blank" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/mentneo/" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/feed/" target="_blank" class="social-link">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:abhiram@mentneo.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Start Your Tech Journey Today</h2>
+            <p class="cta-text">Join mentneo and transform your future with quality, accessible tech education designed for real-world success.</p>
+            <a href="./contact.html" class="cta-btn">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>mentneo</h3>
+                <p>Transforming ideas into digital reality. We create exceptional digital experiences that empower businesses to thrive in the digital age.</p>
+                <div class="footer-social">
+                    <a href="https://www.youtube.com"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/home"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/mentneo/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/feed/"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="./main.html">Home</a>
+                    <a href="./about.html">About</a>
+                    <a href="./services.html">Services</a>
+                    <a href="./project.html">Projects</a>
+                    <a href="./founder.html">Founder</a>
+                    <a href="./contact.html">Contact</a>
+                    <a href="./faq.html">FAQ</a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <div class="footer-links">
+                    <a href="./course.html">Courses</a>
+                    <a href="./blog.html">Blog</a>
+                    <a href="./terms.html">Terms & Conditions</a>
+                    <a href="./privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Vijayawada, Andhra Pradesh, India</p>
+                <p><i class="fas fa-phone"></i> +91 91821 46476</p>
+                <p><i class="fas fa-envelope"></i> mentneo6@gmail.com</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 mentneo. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const body = document.body;
+        const themeToggle = document.getElementById('theme-toggle');
+
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeToggle.textContent = '☀️';
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeToggle.textContent = '🌙';
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        let isMenuOpen = false;
+
+        mobileMenu.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                navLinks.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                navLinks.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Counter Animation for Stats
+        function animateCounter(element, target) {
+            let current = 0;
+            let increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    element.textContent = target;
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.textContent);
+                    animateCounter(entry.target, target);
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            statObserver.observe(stat);
+        });
+    </script>
+</body>
+</html>

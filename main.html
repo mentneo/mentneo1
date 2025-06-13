@@ -9,13 +9,17 @@
     <!-- Favicon Package -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#6366f1">
     <link rel="shortcut icon" href="favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#6366f1">
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
     <meta name="theme-color" content="#6366f1">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Remaining head elements -->
     <meta name="keywords" content="mentneo, ment, mentlearn, coding bootcamp, programming courses, web development training, full stack development" />
@@ -447,9 +451,8 @@
 
         .about-image img {
             width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
+            height: 100%;
+            object-fit: cover;
         }
 
         .about-text {
@@ -1360,7 +1363,7 @@
         <!-- Enhanced section introduction -->
         <div style="text-align: center; max-width: 800px; margin: 0 auto 50px; padding: 0 20px;">
             <p style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 20px;">
-                At mentneo, we offer comprehensive services designed to help students become skilled developers and support businesses in their digital transformation journey.
+                At mentneo, we blend innovation with education to create transformative experiences. Our comprehensive approach covers both education and real-world implementation, helping students and businesses thrive in the digital landscape.
             </p>
         </div>
         
@@ -1368,43 +1371,69 @@
             <!-- Timeline line -->
             <div style="position: absolute; top: 0; bottom: 0; left: 10px; width: 2px; background: var(--primary); opacity: 0.5;"></div>
             
-            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+            <!-- Timeline Items - Fixing visibility and animation -->
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px;" data-aos="fade-up">
                 <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
                 <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Full-Stack Development Training</h3>
-                    <p>Comprehensive training in MERN Stack, Python, Java, and more. Our curriculum covers front-end, back-end, databases, and deployment strategies with hands-on projects and real-world applications.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Cutting-Edge Full-Stack Development Training</h3>
+                    <p>Our industry-aligned curriculum covers MERN Stack, Python, Java, and emerging technologies like AI integration. We emphasize practical learning through real-world projects, code reviews, and collaborative development environments that mirror industry practices.</p>
+                    <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">React</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">Node.js</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">MongoDB</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">Python</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px;" data-aos="fade-up">
                 <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
                 <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Web Services & Development</h3>
-                    <p>Custom web development solutions for businesses of all sizes. We build responsive websites, web applications, e-commerce platforms, and content management systems tailored to your specific needs.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Enterprise-Grade Web & Mobile Solutions</h3>
+                    <p>We deliver scalable, high-performance applications for businesses of all sizes. Our solutions include custom web platforms, e-commerce systems with advanced payment integration, content management systems, and progressive web apps optimized for all devices and platforms.</p>
+                    <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">Responsive Design</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">E-commerce</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">PWA</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px;" data-aos="fade-up">
                 <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
                 <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Career Support & Mentorship</h3>
-                    <p>Job placement assistance and career guidance for our students. Our mentors provide portfolio reviews, interview preparation, and connections to industry opportunities to help launch your tech career.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Personalized Mentorship & Career Acceleration</h3>
+                    <p>Our dedicated mentors provide 1:1 guidance tailored to individual learning styles and career goals. We offer comprehensive job placement assistance including portfolio development, interview preparation, resume building, and direct industry connections to launch successful tech careers.</p>
+                    <div style="margin-top: 15px; border-left: 3px solid var(--primary); padding-left: 15px; font-style: italic; opacity: 0.8;">
+                        "My mentor at mentneo helped me transform from a beginner to a professional developer in just 6 months." — Rahul K., Full-Stack Developer
+                    </div>
                 </div>
             </div>
             
-            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px;" data-aos="fade-up">
                 <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
                 <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Mobile App Development</h3>
-                    <p>End-to-end mobile application development for iOS and Android platforms. We use React Native, Flutter, and native development approaches to create engaging, high-performance mobile experiences.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Cross-Platform Mobile App Development</h3>
+                    <p>We create feature-rich, high-performance mobile applications for iOS and Android using React Native, Flutter, and native development approaches. Our solutions include offline capabilities, real-time updates, push notifications, GPS and sensor integration, and seamless API connections.</p>
+                    <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">React Native</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">Flutter</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;">Native Apps</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="timeline-item" style="display: flex; margin-bottom: 30px; opacity: 0; transform: translateY(20px);" data-aos="fade-up">
+            <div class="timeline-item" style="display: flex; margin-bottom: 30px;" data-aos="fade-up">
                 <div style="min-width: 20px; height: 20px; background: var(--primary); border-radius: 50%; margin-right: 20px; z-index: 2;"></div>
                 <div class="timeline-content" style="background: var(--card-bg); padding: 20px; border-radius: 10px; flex: 1; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 10px;">Technical Consulting</h3>
-                    <p>Expert advice on technology selection, architecture planning, and implementation strategies. We help businesses make informed decisions about their technology stack and digital transformation initiatives.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Strategic Technology Consulting</h3>
+                    <p>Our expert consultants provide technology roadmapping, architecture planning, and implementation strategies for digital transformation. We help businesses evaluate tech stack options, optimize existing systems, and implement best practices for security, scalability, and maintainability.</p>
+                    <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                        <div style="background: var(--primary); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <span>Free initial consultation for startups and small businesses</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1425,7 +1454,7 @@
         <h2 class="section-title fade-in">About Us</h2>
         <div class="about-content">
             <div class="about-image fade-in-left">
-                <img src="./PHOTOS/PHOTO-2025-03-22-19-12-42.jpg" alt="About mentneo">
+                <img src="./PHOTOS/logo-3d.png" alt="About mentneo">
             </div>
             <div class="about-text fade-in-right">
                 <h3>Pioneering Digital Transformation</h3>
@@ -1565,43 +1594,82 @@
     </section>
 
     <!-- Latest Updates Section -->
-    <section id="updates" class="services" style="background: var(--bg-secondary); margin-top: -50px;">
+    <section id="updates" class="services" style="background: var(--bg-secondary); margin-top: -50px; padding-bottom: 100px;">
         <h2 class="section-title fade-in">Latest Updates</h2>
         <div class="updates-container" style="max-width: 1200px; margin: 0 auto;">
             <div class="updates-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="update-card" style="background: var (--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
-                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 30, 2025</span>
-                    <h3 style="margin: 10px 0; font-size: 1.4rem;">New Batch Starting Soon</h3>
-                    <p style="margin-bottom: 15px;">Enrollments open for our next Full-Stack Development bootcamp. Early bird discounts available!</p>
-                    <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                        Learn More 
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0; border-top: 4px solid #6366f1; box-shadow: var(--shadow);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span class="date" style="color: var(--primary); font-size: 0.9rem;">June 15, 2023</span>
+                        <span class="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">NEW BATCH</span>
+                    </div>
+                    <h3 style="margin: 0 0 15px; font-size: 1.4rem;">Summer Cohort Enrollment Open</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">Limited spots available for our intensive 12-week Full-Stack Development bootcamp. Early enrollment discounts end June 30th. Part-time and weekend options available.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 500;">
+                            Apply Now
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <div style="display: flex; align-items: center; gap: 5px; color: #6b7280; font-size: 0.9rem;">
+                            <i class="fas fa-users" style="color: var(--primary);"></i>
+                            <span>24 spots left</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="update-card" style="background: var (--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
-                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">March 27, 2025</span>
-                    <h3 style="margin: 10px 0; font-size: 1.4rem;">updates</h3>
-                    <p style="margin-bottom: 15px;">course price launch on .</p>
-                    <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                        Read Stories 
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                
+                <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0; border-top: 4px solid #3b82f6; box-shadow: var(--shadow);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span class="date" style="color: var(--primary); font-size: 0.9rem;">June 8, 2023</span>
+                        <span class="background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">ACHIEVEMENT</span>
+                    </div>
+                    <h3 style="margin: 0 0 15px; font-size: 1.4rem;">90% Job Placement Rate Achieved</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">We're proud to announce that our latest graduating class has achieved a 90% job placement rate within 3 months of program completion, with an average starting salary of ₹7.2 LPA.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 500;">
+                            Read Success Stories 
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <div style="display: flex; align-items: center;">
+                            <div style="display: flex; margin-right: -5px;">
+                                <div style="width: 25px; height: 25px; border-radius: 50%; background: #3b82f6; border: 2px solid var(--card-bg);"></div>
+                                <div style="width: 25px; height: 25px; border-radius: 50%; background: #6366f1; border: 2px solid var(--card-bg); margin-left: -10px;"></div>
+                                <div style="width: 25px; height: 25px; border-radius: 50%; background: #8b5cf6; border: 2px solid var(--card-bg); margin-left: -10px;"></div>
+                            </div>
+                            <span style="font-size: 0.9rem; color: #6b7280; margin-left: 5px;">+28 others</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="update-card" style="background: var(--card-bg); padding: 20px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0;">
-                    <span class="date" style="color: var(--primary); font-size: 0.9rem;">may 1, 2025</span>
-                    <h3 style="margin: 10px 0; font-size: 1.4rem;">New Course Launch</h3>
-                    <p style="margin-bottom: 15px;">Introducing Advanced Python with Data Science specialization. Limited seats available.</p>
-                    <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                        Explore 
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                
+                <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0; border-top: 4px solid #8b5cf6; box-shadow: var(--shadow);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <span class="date" style="color: var(--primary); font-size: 0.9rem;">May 30, 2023</span>
+                        <span class="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">NEW COURSE</span>
+                    </div>
+                    <h3 style="margin: 0 0 15px; font-size: 1.4rem;">AI & Machine Learning Track Launched</h3>
+                    <p style="margin-bottom: 20px; line-height: 1.6;">Introducing our new specialized track in AI & ML with Python focusing on practical applications in web development, data analysis, and automation. Early adopter pricing available.</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 500;">
+                            Explore Curriculum
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <div style="padding: 4px 10px; background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-radius: 20px; font-size: 0.75rem;">
+                            Limited Seats
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <!-- View All Updates Button -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="./blog.html" class="cta-button secondary-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
+                    View All Updates
+                </a>
             </div>
         </div>
     </section>
@@ -1683,13 +1751,14 @@
             isMenuOpen = !isMenuOpen;
             
             if (isMenuOpen) {
-                navLinks.classList.add('active');
+                               navLinks.classList.add('active');
                 mobileMenu.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 
                 // Animate menu items
                 document.querySelectorAll('.nav-links a').forEach((link, index) => {
                     setTimeout(() => {
+
                         link.style.opacity = '1';
                         link.style.transform = 'translateY(0)';
                     }, 100 * index);

@@ -312,16 +312,6 @@
             color: var(--success);
         }
 
-        .status-pending {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--error);
-        }
-
-        .status-approved {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--success);
-        }
-
         .actions {
             display: flex;
             gap: 10px;
@@ -441,15 +431,6 @@
             background: #dc2626;
         }
 
-        .btn-warning {
-            background: var(--warning);
-            color: white;
-        }
-
-        .btn-warning:hover {
-            background: #d97706;
-        }
-
         .btn-success {
             background: var(--success);
             color: white;
@@ -536,7 +517,6 @@
             display: none;
         }
 
-        /* Add some responsive adjustments */
         @media (max-width: 992px) {
             .admin-container {
                 flex-direction: column;
@@ -639,7 +619,7 @@
             <ul class="sidebar-menu">
                 <li><a href="#dashboard" class="active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                 <li><a href="#contacts" data-tab="contacts"><i class="fas fa-envelope"></i> Contact Form</a></li>
-                <li><a href="#courses" data-tab="courses"><i class="fas fa-graduation-cap"></i> Course Requests</a></li>
+                <li><a href="#certificates" data-tab="certificates"><i class="fas fa-certificate"></i> Certificates</a></li>
                 <li><a href="#settings" data-tab="settings"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
         </div>
@@ -675,15 +655,6 @@
                     
                     <div class="stat-card">
                         <div class="stat-header">
-                            <span class="stat-title">Course Requests</span>
-                            <div class="stat-icon stat-courses"><i class="fas fa-graduation-cap"></i></div>
-                        </div>
-                        <div class="stat-number" id="total-courses">0</div>
-                        <div class="stat-description">Course enrollment requests</div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-header">
                             <span class="stat-title">Unread Messages</span>
                             <div class="stat-icon stat-unread"><i class="fas fa-bell"></i></div>
                         </div>
@@ -693,56 +664,34 @@
                     
                     <div class="stat-card">
                         <div class="stat-header">
-                            <span class="stat-title">Pending Requests</span>
-                            <div class="stat-icon stat-pending"><i class="fas fa-clock"></i></div>
+                            <span class="stat-title">Issued Certificates</span>
+                            <div class="stat-icon stat-courses"><i class="fas fa-certificate"></i></div>
                         </div>
-                        <div class="stat-number" id="pending-count">0</div>
-                        <div class="stat-description">Pending course requests</div>
+                        <div class="stat-number" id="certificate-count">0</div>
+                        <div class="stat-description">Total certificates issued</div>
                     </div>
                 </div>
                 
-                <div class="tabs">
-                    <div class="tab active" data-content="recent-contacts">Recent Contacts</div>
-                    <div class="tab" data-content="recent-courses">Recent Course Requests</div>
-                </div>
-                
-                <div id="recent-contacts-content" class="tab-content active">
-                    <table class="data-table" id="recent-contacts-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recent-contacts-body">
-                            <!-- Data will be populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div id="recent-courses-content" class="tab-content">
-                    <table class="data-table" id="recent-courses-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Course</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="recent-courses-body">
-                            <!-- Data will be populated dynamically -->
-                        </tbody>
-                    </table>
-                </div>
+                <h2>Recent Contacts</h2>
+                <table class="data-table" id="recent-contacts-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-contacts-body">
+                        <!-- Data will be populated dynamically -->
+                    </tbody>
+                </table>
             </div>
             
             <!-- Contacts Tab Content -->
             <div id="contacts-content" class="tab-content">
+                <h2>All Contact Submissions</h2>
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -760,22 +709,46 @@
                 </table>
             </div>
             
-            <!-- Courses Tab Content -->
-            <div id="courses-content" class="tab-content">
+            <!-- Certificates Tab Content -->
+            <div id="certificates-content" class="tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <h2>Certificate Management</h2>
+                    <button class="btn btn-primary" id="create-certificate-btn">
+                        <i class="fas fa-plus"></i> Issue New Certificate
+                    </button>
+                </div>
+
+                <!-- Certificate Search and Verification -->
+                <div class="stat-card" style="margin-bottom: 30px;">
+                    <div class="stat-header">
+                        <span class="stat-title">Certificate Verification</span>
+                    </div>
+                    
+                    <div style="margin-top: 20px; display: flex; gap: 10px;">
+                        <input type="text" id="certificate-search" class="form-control" placeholder="Enter certificate ID or student email" style="flex: 1;">
+                        <button class="btn btn-primary" id="verify-certificate-btn">Verify</button>
+                    </div>
+                    
+                    <div id="certificate-result" style="margin-top: 20px; display: none;">
+                        <!-- Results will appear here -->
+                    </div>
+                </div>
+
+                <!-- Certificates Table -->
+                <h3>All Certificates</h3>
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Certificate ID</th>
+                            <th>Student Name</th>
                             <th>Course</th>
-                            <th>Price</th>
-                            <th>Date</th>
+                            <th>Date Issued</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="courses-table-body">
-                        <!-- Data will be populated dynamically -->
+                    <tbody id="certificates-table-body">
+                        <!-- Certificate data will be populated here -->
                     </tbody>
                 </table>
             </div>
@@ -805,8 +778,7 @@
                     </div>
                     <p style="margin-bottom: 20px;">Clear old data that is no longer needed.</p>
                     <div class="btn-group">
-                        <button id="clear-read" class="btn btn-warning">Clear Read Messages</button>
-                        <button id="clear-processed" class="btn btn-warning" style="margin-left: 10px;">Clear Processed Requests</button>
+                        <button id="clear-read" class="btn btn-danger">Clear Read Messages</button>
                     </div>
                 </div>
             </div>
@@ -850,727 +822,941 @@
         </div>
     </div>
     
-    <!-- Course Request Modal -->
-    <div id="course-modal" class="modal">
+    <!-- Certificate Issue Modal -->
+    <div id="certificate-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Course Request Details</h2>
+                <h2 id="certificate-modal-title">Issue New Certificate</h2>
                 <button class="modal-close">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="detail-item">
-                    <div class="detail-label">Name</div>
-                    <div id="modal-course-name"></div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Email</div>
-                    <div id="modal-course-email"></div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Phone</div>
-                    <div id="modal-course-phone"></div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Course</div>
-                    <div id="modal-course-title"></div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Category</div>
-                    <div id="modal-course-category"></div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Price</div>
-                    <div id="modal-course-price"></div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">Date</div>
-                    <div id="modal-course-date"></div>
-                </div>
+                <form id="certificate-form">
+                    <div class="form-group">
+                        <label for="student-name">Student Name</label>
+                        <input type="text" id="student-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-email">Student Email</label>
+                        <input type="email" id="student-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-name">Course Name</label>
+                        <input type="text" id="course-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-date">Date of Completion</label>
+                        <input type="date" id="issue-date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificate-grade">Grade/Performance</label>
+                        <select id="certificate-grade" class="form-control">
+                            <option value="Excellent">Excellent</option>
+                            <option value="Very Good">Very Good</option>
+                            <option value="Good">Good</option>
+                            <option value="Satisfactory">Satisfactory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="certificate-notes">Additional Notes</label>
+                        <textarea id="certificate-notes" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <input type="hidden" id="certificate-id" value="">
+                    <input type="hidden" id="certificate-mode" value="create">
+                </form>
             </div>
             <div class="modal-actions">
-                <button id="modal-course-delete" class="btn btn-danger">Delete</button>
-                <button id="modal-course-status" class="btn btn-success">Approve</button>
-                <button id="modal-course-contact" class="btn btn-primary">Contact User</button>
+                <button type="button" id="certificate-submit" class="btn btn-primary">Issue Certificate</button>
+                <button type="button" class="btn btn-danger modal-close">Cancel</button>
             </div>
         </div>
     </div>
     
     <script src="./js/firebase-config.js"></script>
     <script>
-        // DOM Elements
-        const loginContainer = document.getElementById('login-container');
-        const adminContainer = document.getElementById('admin-container');
-        const loginForm = document.getElementById('login-form');
-        const authError = document.getElementById('auth-error');
-        const logoutBtn = document.getElementById('logout-btn');
-        
-        // Navigation and Tabs
-        const menuLinks = document.querySelectorAll('.sidebar-menu a');
-        const tabContents = document.querySelectorAll('.main-content .tab-content');
-        const dashboardTabs = document.querySelectorAll('.tabs .tab');
-        const dashboardContents = document.querySelectorAll('#dashboard-content .tab-content');
-        
-        // Modals
-        const contactModal = document.getElementById('contact-modal');
-        const courseModal = document.getElementById('course-modal');
-        const modalCloseButtons = document.querySelectorAll('.modal-close');
-        
-        // Current item being viewed
-        let currentContactId = null;
-        let currentCourseId = null;
-        
-        // Auth State
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                // User is signed in
-                loginContainer.style.display = 'none';
-                adminContainer.style.display = 'flex';
-                document.getElementById('admin-email').value = user.email;
-                
-                // Load data from Firestore
-                loadDashboardData();
-                loadContactData();
-                loadCourseData();
-            } else {
-                // User is signed out
-                loginContainer.style.display = 'flex';
-                adminContainer.style.display = 'none';
-            }
-        });
-        
-        // Login Form Handler
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        // Check if the current domain is localhost before allowing access
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLocalhost = window.location.hostname === "localhost" || 
+                                window.location.hostname === "127.0.0.1" ||
+                                window.location.hostname.includes("192.168.") ||
+                                window.location.hostname === "";  // Empty for file:// protocol
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if (!email || !password) {
-                if (!email) document.getElementById('email-error').style.display = 'block';
-                if (!password) document.getElementById('password-error').style.display = 'block';
+            if (!isLocalhost) {
+                document.body.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column; text-align: center; padding: 20px;">
+                        <h1 style="color: #6366f1; margin-bottom: 20px; font-size: 2rem;">Access Restricted</h1>
+                        <p style="max-width: 500px; margin-bottom: 20px;">The admin dashboard is only accessible from authorized networks. Please contact the system administrator for access.</p>
+                        <a href="./main.html" style="display: inline-block; padding: 10px 20px; background: #6366f1; color: white; text-decoration: none; border-radius: 5px;">Return to Homepage</a>
+                    </div>
+                `;
                 return;
             }
             
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    // Reset form
-                    loginForm.reset();
+            // Original code continues for authorized access
+            // DOM Elements
+            const loginContainer = document.getElementById('login-container');
+            const adminContainer = document.getElementById('admin-container');
+            const loginForm = document.getElementById('login-form');
+            const authError = document.getElementById('auth-error');
+            const logoutBtn = document.getElementById('logout-btn');
+            const loginBtn = loginForm.querySelector('button[type="submit"]');
+            
+            // Navigation and Tabs
+            const menuLinks = document.querySelectorAll('.sidebar-menu a');
+            const tabContents = document.querySelectorAll('.main-content .tab-content');
+            
+            // Modals
+            const contactModal = document.getElementById('contact-modal');
+            const modalCloseButtons = document.querySelectorAll('.modal-close');
+            
+            // Current item being viewed
+            let currentContactId = null;
+            
+            // Initialize Firebase
+            try {
+                if (typeof firebase === 'undefined') {
+                    console.error('Firebase is not initialized. Loading default Firebase config...');
+                    // Default Firebase configuration if not loaded
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyBsUW2n25VO-KG5Pr_SpDZVeiIbPh_DuAA",
+                        authDomain: "mentneo-c5ebe.firebaseapp.com",
+                        projectId: "mentneo-c5ebe",
+                        storageBucket: "mentneo-c5ebe.appspot.com",
+                        messagingSenderId: "345751084638",
+                        appId: "1:345751084638:web:61c5e6b0ee1022746b9219"
+                    };
+                    
+                    // Initialize Firebase if not already initialized
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp(firebaseConfig);
+                    }
+                }
+                
+                console.log("Firebase initialized successfully");
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+            }
+            
+            // Auth State
+            firebase.auth().onAuthStateChanged(user => {
+                console.log("Auth state changed:", user ? `User logged in: ${user.email}` : "User logged out");
+                if (user) {
+                    // User is signed in
+                    loginContainer.style.display = 'none';
+                    adminContainer.style.display = 'flex';
+                    document.getElementById('admin-email').value = user.email;
+                    document.querySelector('.admin-name').textContent = user.email.split('@')[0];
+                    document.querySelector('.admin-avatar').textContent = user.email[0].toUpperCase();
+                    
+                    // Load data from Firestore
+                    loadDashboardData();
+                    loadContactData();
+                    loadCertificateData();
+                    
+                    // Update URL hash if needed
+                    if (window.location.hash) {
+                        const tabId = window.location.hash.substring(1);
+                        const tabLink = document.querySelector(`.sidebar-menu a[data-tab="${tabId}"]`);
+                        if (tabLink) tabLink.click();
+                    }
+                } else {
+                    // User is signed out
+                    loginContainer.style.display = 'flex';
+                    adminContainer.style.display = 'none';
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = "Log In";
+                    
+                    // Reset form fields and errors
+                    document.getElementById('email-error').style.display = 'none';
+                    document.getElementById('password-error').style.display = 'none';
                     authError.style.display = 'none';
-                })
-                .catch(error => {
-                    authError.textContent = error.message;
-                    authError.style.display = 'block';
-                });
-        });
-        
-        // Logout Handler
-        logoutBtn.addEventListener('click', () => {
-            auth.signOut();
-        });
-        
-        // Menu Navigation
-        menuLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
+                }
+            });
+            
+            // Login Form Handler
+            loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                // Update active link
-                menuLinks.forEach(item => item.classList.remove('active'));
-                link.classList.add('active');
+                // Reset error messages
+                document.getElementById('email-error').style.display = 'none';
+                document.getElementById('password-error').style.display = 'none';
+                authError.style.display = 'none';
                 
-                // Show corresponding tab content
-                const tabId = link.getAttribute('data-tab') + '-content';
-                tabContents.forEach(tab => {
-                    tab.classList.remove('active');
-                });
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Dashboard Tabs
-        dashboardTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                dashboardTabs.forEach(item => item.classList.remove('active'));
-                tab.classList.add('active');
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
                 
-                const contentId = tab.getAttribute('data-content') + '-content';
-                dashboardContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(contentId).classList.add('active');
-            });
-        });
-        
-        // Close Modals
-        modalCloseButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                contactModal.classList.remove('active');
-                courseModal.classList.remove('active');
-                currentContactId = null;
-                currentCourseId = null;
-            });
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === contactModal) contactModal.classList.remove('active');
-            if (e.target === courseModal) courseModal.classList.remove('active');
-        });
-        
-        // Load Dashboard Data
-        function loadDashboardData() {
-            // Get counts
-            db.collection('contact_submissions').get().then(snapshot => {
-                document.getElementById('total-contacts').textContent = snapshot.size;
+                // Form validation
+                let hasErrors = false;
+                if (!email) {
+                    document.getElementById('email-error').style.display = 'block';
+                    hasErrors = true;
+                }
+                if (!password) {
+                    document.getElementById('password-error').style.display = 'block';
+                    hasErrors = true;
+                }
                 
-                // Count unread messages
-                let unreadCount = 0;
-                snapshot.forEach(doc => {
-                    if (doc.data().status === 'unread') unreadCount++;
-                });
-                document.getElementById('unread-count').textContent = unreadCount;
+                if (hasErrors) return;
                 
-                // Load recent contacts
-                loadRecentContacts();
-            });
-            
-            db.collection('course_requests').get().then(snapshot => {
-                document.getElementById('total-courses').textContent = snapshot.size;
+                // Show loading state
+                loginBtn.disabled = true;
+                loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
                 
-                // Count pending requests
-                let pendingCount = 0;
-                snapshot.forEach(doc => {
-                    if (doc.data().status === 'pending') pendingCount++;
-                });
-                document.getElementById('pending-count').textContent = pendingCount;
-                
-                // Load recent course requests
-                loadRecentCourses();
-            });
-        }
-        
-        // Load Recent Contacts
-        function loadRecentContacts() {
-            const tableBody = document.getElementById('recent-contacts-body');
-            tableBody.innerHTML = '';
-            
-            db.collection('contact_submissions')
-                .orderBy('timestamp', 'desc')
-                .limit(5)
-                .get()
-                .then(snapshot => {
-                    if (snapshot.empty) {
-                        tableBody.innerHTML = `
-                            <tr>
-                                <td colspan="5" class="empty-state">
-                                    <div><i class="fas fa-inbox empty-icon"></i></div>
-                                    <div>No contact submissions yet</div>
-                                </td>
-                            </tr>
-                        `;
-                        return;
-                    }
-                    
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
-                        const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                firebase.auth().signInWithEmailAndPassword(email, password)
+                    .then(() => {
+                        console.log("Login successful");
+                        loginForm.reset();
+                        authError.style.display = 'none';
+                    })
+                    .catch(error => {
+                        console.error("Login error:", error);
+                        loginBtn.disabled = false;
+                        loginBtn.textContent = "Log In";
                         
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${data.name}</td>
-                            <td>${data.email}</td>
-                            <td>${dateString}</td>
-                            <td><span class="status-pill ${data.status === 'unread' ? 'status-unread' : 'status-read'}">${data.status}</span></td>
-                            <td class="actions">
-                                <button class="action-btn view-btn" data-id="${doc.id}"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn mark-btn" data-id="${doc.id}"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete-btn" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                    
-                    // Add event listeners for action buttons
-                    setupContactActions(tableBody);
-                });
-        }
-        
-        // Load Recent Course Requests
-        function loadRecentCourses() {
-            const tableBody = document.getElementById('recent-courses-body');
-            tableBody.innerHTML = '';
-            
-            db.collection('course_requests')
-                .orderBy('timestamp', 'desc')
-                .limit(5)
-                .get()
-                .then(snapshot => {
-                    if (snapshot.empty) {
-                        tableBody.innerHTML = `
-                            <tr>
-                                <td colspan="5" class="empty-state">
-                                    <div><i class="fas fa-graduation-cap empty-icon"></i></div>
-                                    <div>No course requests yet</div>
-                                </td>
-                            </tr>
-                        `;
-                        return;
-                    }
-                    
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
-                        const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                        // Show user-friendly error messages
+                        switch(error.code) {
+                            case 'auth/user-not-found':
+                                authError.textContent = "No account found with this email.";
+                                break;
+                            case 'auth/wrong-password':
+                                authError.textContent = "Incorrect password. Please try again.";
+                                break;
+                            case 'auth/invalid-email':
+                                authError.textContent = "Invalid email format.";
+                                break;
+                            case 'auth/too-many-requests':
+                                authError.textContent = "Too many failed login attempts. Please try again later.";
+                                break;
+                            default:
+                                authError.textContent = error.message;
+                        }
                         
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${data.user_name}</td>
-                            <td>${data.course_title}</td>
-                            <td>${dateString}</td>
-                            <td>
-                                <span class="status-pill ${data.status === 'pending' ? 'status-pending' : 'status-approved'}">${data.status}</span>
-                            </td>
-                            <td class="actions">
-                                <button class="action-btn view-btn" data-id="${doc.id}"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn mark-btn" data-id="${doc.id}"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete-btn" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
+                        authError.style.display = 'block';
                     });
-                    
-                    // Add event listeners for action buttons
-                    setupCourseActions(tableBody);
-                });
-        }
-        
-        // Load Full Contact Data
-        function loadContactData() {
-            const tableBody = document.getElementById('contacts-table-body');
-            tableBody.innerHTML = '';
+            });
             
-            db.collection('contact_submissions')
-                .orderBy('timestamp', 'desc')
-                .get()
-                .then(snapshot => {
-                    if (snapshot.empty) {
-                        tableBody.innerHTML = `
-                            <tr>
-                                <td colspan="6" class="empty-state">
-                                    <div><i class="fas fa-inbox empty-icon"></i></div>
-                                    <div>No contact submissions yet</div>
-                                </td>
-                            </tr>
-                        `;
-                        return;
+            // Logout Handler
+            logoutBtn.addEventListener('click', () => {
+                firebase.auth().signOut().then(() => {
+                    console.log("Logout successful");
+                }).catch(error => {
+                    console.error("Logout error:", error);
+                    alert("Error during logout: " + error.message);
+                });
+            });
+            
+            // Menu Navigation
+            menuLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Update active link
+                    menuLinks.forEach(item => item.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    // Show corresponding tab content
+                    const tabId = link.getAttribute('data-tab') + '-content';
+                    tabContents.forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Update URL hash
+                    window.location.hash = link.getAttribute('data-tab');
+                    
+                    // Load data for specific tabs
+                    const tab = link.getAttribute('data-tab');
+                    if (tab === 'certificates') {
+                        loadCertificateData();
+                    } else if (tab === 'contacts') {
+                        loadContactData();
                     }
-                    
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
-                        const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                        
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${data.name}</td>
-                            <td>${data.email}</td>
-                            <td>${data.phone}</td>
-                            <td>${dateString}</td>
-                            <td><span class="status-pill ${data.status === 'unread' ? 'status-unread' : 'status-read'}">${data.status}</span></td>
-                            <td class="actions">
-                                <button class="action-btn view-btn" data-id="${doc.id}"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn mark-btn" data-id="${doc.id}"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete-btn" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                    
-                    // Add event listeners for action buttons
-                    setupContactActions(tableBody);
                 });
-        }
-        
-        // Load Full Course Requests Data
-        function loadCourseData() {
-            const tableBody = document.getElementById('courses-table-body');
-            tableBody.innerHTML = '';
-            
-            db.collection('course_requests')
-                .orderBy('timestamp', 'desc')
-                .get()
-                .then(snapshot => {
-                    if (snapshot.empty) {
-                        tableBody.innerHTML = `
-                            <tr>
-                                <td colspan="7" class="empty-state">
-                                    <div><i class="fas fa-graduation-cap empty-icon"></i></div>
-                                    <div>No course requests yet</div>
-                                </td>
-                            </tr>
-                        `;
-                        return;
-                    }
-                    
-                    snapshot.forEach(doc => {
-                        const data = doc.data();
-                        const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
-                        const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                        
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${data.user_name}</td>
-                            <td>${data.user_email}</td>
-                            <td>${data.course_title}</td>
-                            <td>${data.course_price}</td>
-                            <td>${dateString}</td>
-                            <td><span class="status-pill ${data.status === 'pending' ? 'status-pending' : 'status-approved'}">${data.status}</span></td>
-                            <td class="actions">
-                                <button class="action-btn view-btn" data-id="${doc.id}"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn mark-btn" data-id="${doc.id}"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete-btn" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                    
-                    // Add event listeners for action buttons
-                    setupCourseActions(tableBody);
-                });
-        }
-        
-        // Setup Contact Action Buttons
-        function setupContactActions(tableContainer) {
-            const viewButtons = tableContainer.querySelectorAll('.view-btn');
-            const markButtons = tableContainer.querySelectorAll('.mark-btn');
-            const deleteButtons = tableContainer.querySelectorAll('.delete-btn');
-            
-            // View contact details
-            viewButtons.forEach(button => {
+            });
+
+            // Close Modals
+            modalCloseButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    const contactId = button.getAttribute('data-id');
-                    currentContactId = contactId;
+                    contactModal.classList.remove('active');
+                    currentContactId = null;
+                });
+            });
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === contactModal) contactModal.classList.remove('active');
+            });
+            
+            // Load Dashboard Data
+            function loadDashboardData() {
+                try {
+                    // Get counts
+                    firebase.firestore().collection('contact_submissions').get().then(snapshot => {
+                        document.getElementById('total-contacts').textContent = snapshot.size;
+                        
+                        // Count unread messages
+                        let unreadCount = 0;
+                        snapshot.forEach(doc => {
+                            if (doc.data().status === 'unread') unreadCount++;
+                        });
+                        document.getElementById('unread-count').textContent = unreadCount;
+                        
+                        // Get certificate count
+                        firebase.firestore().collection('certificates').get().then(certSnapshot => {
+                            document.getElementById('certificate-count').textContent = certSnapshot.size;
+                        });
+                        
+                        // Load recent contacts
+                        loadRecentContacts();
+                    }).catch(error => {
+                        console.error("Error getting contact submissions: ", error);
+                    });
+                } catch (error) {
+                    console.error("Error in loadDashboardData: ", error);
+                }
+            }
+            
+            // Load Recent Contacts
+            function loadRecentContacts() {
+                try {
+                    const tableBody = document.getElementById('recent-contacts-body');
+                    tableBody.innerHTML = '';
                     
-                    db.collection('contact_submissions').doc(contactId).get()
-                        .then(doc => {
-                            if (doc.exists) {
+                    firebase.firestore().collection('contact_submissions')
+                        .orderBy('timestamp', 'desc')
+                        .limit(5)
+                        .get()
+                        .then(snapshot => {
+                            if (snapshot.empty) {
+                                tableBody.innerHTML = `
+                                    <tr>
+                                        <td colspan="5" class="empty-state">
+                                            <div><i class="fas fa-inbox empty-icon"></i></div>
+                                            <div>No contact submissions yet</div>
+                                        </td>
+                                    </tr>
+                                `;
+                                return;
+                            }
+                            
+                            snapshot.forEach(doc => {
                                 const data = doc.data();
                                 const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
                                 const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
                                 
-                                document.getElementById('modal-contact-name').textContent = data.name;
-                                document.getElementById('modal-contact-email').textContent = data.email;
-                                document.getElementById('modal-contact-phone').textContent = data.phone;
-                                document.getElementById('modal-contact-date').textContent = dateString;
-                                document.getElementById('modal-contact-message').textContent = data.message;
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${data.name}</td>
+                                    <td>${data.email}</td>
+                                    <td>${dateString}</td>
+                                    <td><span class="status-pill ${data.status === 'unread' ? 'status-unread' : 'status-read'}">${data.status}</span></td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" data-id="${doc.id}"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn mark-btn" data-id="${doc.id}"><i class="fas fa-check"></i></button>
+                                        <button class="action-btn delete-btn" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                `;
+                                tableBody.appendChild(row);
+                            });
+                            
+                            // Add event listeners for action buttons
+                            setupContactActions(tableBody);
+                        }).catch(error => {
+                            console.error("Error getting recent contacts: ", error);
+                        });
+                } catch (error) {
+                    console.error("Error in loadRecentContacts: ", error);
+                }
+            }
+            
+            // Load Full Contact Data
+            function loadContactData() {
+                try {
+                    const tableBody = document.getElementById('contacts-table-body');
+                    tableBody.innerHTML = '';
+                    
+                    firebase.firestore().collection('contact_submissions')
+                        .orderBy('timestamp', 'desc')
+                        .get()
+                        .then(snapshot => {
+                            if (snapshot.empty) {
+                                tableBody.innerHTML = `
+                                    <tr>
+                                        <td colspan="6" class="empty-state">
+                                            <div><i class="fas fa-inbox empty-icon"></i></div>
+                                            <div>No contact submissions yet</div>
+                                        </td>
+                                    </tr>
+                                `;
+                                return;
+                            }
+                            
+                            snapshot.forEach(doc => {
+                                const data = doc.data();
+                                const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
+                                const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
                                 
-                                const statusBtn = document.getElementById('modal-contact-status');
-                                if (data.status === 'unread') {
-                                    statusBtn.textContent = 'Mark as Read';
-                                    statusBtn.classList.remove('btn-warning');
-                                    statusBtn.classList.add('btn-success');
-                                } else {
-                                    statusBtn.textContent = 'Mark as Unread';
-                                    statusBtn.classList.remove('btn-success');
-                                    statusBtn.classList.add('btn-warning');
-                                }
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${data.name}</td>
+                                    <td>${data.email}</td>
+                                    <td>${data.phone}</td>
+                                    <td>${dateString}</td>
+                                    <td><span class="status-pill ${data.status === 'unread' ? 'status-unread' : 'status-read'}">${data.status}</span></td>
+                                    <td class="actions">
+                                        <button class="action-btn view-btn" data-id="${doc.id}"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn mark-btn" data-id="${doc.id}"><i class="fas fa-check"></i></button>
+                                        <button class="action-btn delete-btn" data-id="${doc.id}"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                `;
+                                tableBody.appendChild(row);
+                            });
+                            
+                            // Add event listeners for action buttons
+                            setupContactActions(tableBody);
+                        }).catch(error => {
+                            console.error("Error getting contact data: ", error);
+                        });
+                } catch (error) {
+                    console.error("Error in loadContactData: ", error);
+                }
+            }
+            
+            // Setup Contact Action Buttons
+            function setupContactActions(tableContainer) {
+                try {
+                    const viewButtons = tableContainer.querySelectorAll('.view-btn');
+                    const markButtons = tableContainer.querySelectorAll('.mark-btn');
+                    const deleteButtons = tableContainer.querySelectorAll('.delete-btn');
+                    
+                    // View contact details
+                    viewButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const contactId = button.getAttribute('data-id');
+                            currentContactId = contactId;
+                            
+                            firebase.firestore().collection('contact_submissions').doc(contactId).get()
+                                .then(doc => {
+                                    if (doc.exists) {
+                                        const data = doc.data();
+                                        const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
+                                        const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                                        
+                                        document.getElementById('modal-contact-name').textContent = data.name;
+                                        document.getElementById('modal-contact-email').textContent = data.email;
+                                        document.getElementById('modal-contact-phone').textContent = data.phone;
+                                        document.getElementById('modal-contact-date').textContent = dateString;
+                                        document.getElementById('modal-contact-message').textContent = data.message;
+                                        
+                                        const statusBtn = document.getElementById('modal-contact-status');
+                                        if (data.status === 'unread') {
+                                            statusBtn.textContent = 'Mark as Read';
+                                            statusBtn.classList.remove('btn-warning');
+                                            statusBtn.classList.add('btn-success');
+                                        } else {
+                                            statusBtn.textContent = 'Mark as Unread';
+                                            statusBtn.classList.remove('btn-success');
+                                            statusBtn.classList.add('btn-warning');
+                                        }
+                                        
+                                        contactModal.classList.add('active');
+                                        
+                                        // If unread, mark as read automatically when viewed
+                                        if (data.status === 'unread') {
+                                            firebase.firestore().collection('contact_submissions').doc(contactId).update({
+                                                status: 'read'
+                                            }).then(() => {
+                                                // Refresh data after status change
+                                                loadDashboardData();
+                                                loadContactData();
+                                            });
+                                        }
+                                    }
+                                }).catch(error => {
+                                    console.error("Error getting contact details: ", error);
+                                });
+                        });
+                    });
+                    
+                    // Mark as read/unread
+                    markButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const contactId = button.getAttribute('data-id');
+                            
+                            firebase.firestore().collection('contact_submissions').doc(contactId).get()
+                                .then(doc => {
+                                    if (doc.exists) {
+                                        const newStatus = doc.data().status === 'unread' ? 'read' : 'unread';
+                                        
+                                        firebase.firestore().collection('contact_submissions').doc(contactId).update({
+                                            status: newStatus
+                                        }).then(() => {
+                                            // Refresh data after status change
+                                            loadDashboardData();
+                                            loadContactData();
+                                        });
+                                    }
+                                }).catch(error => {
+                                    console.error("Error toggling status: ", error);
+                                });
+                        });
+                    });
+                    
+                    // Delete contact
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            if (confirm("Are you sure you want to delete this contact submission? This action cannot be undone.")) {
+                                const contactId = button.getAttribute('data-id');
                                 
-                                contactModal.classList.add('active');
-                                
-                                // If unread, mark as read automatically when viewed
-                                if (data.status === 'unread') {
-                                    db.collection('contact_submissions').doc(contactId).update({
-                                        status: 'read'
-                                    }).then(() => {
-                                        // Refresh data after status change
+                                firebase.firestore().collection('contact_submissions').doc(contactId).delete()
+                                    .then(() => {
+                                        // Refresh data after deletion
                                         loadDashboardData();
                                         loadContactData();
+                                    }).catch(error => {
+                                        console.error("Error deleting contact: ", error);
                                     });
-                                }
                             }
                         });
-                });
-            });
+                    });
+                } catch (error) {
+                    console.error("Error in setupContactActions: ", error);
+                }
+            }
             
-            // Mark as read/unread
-            markButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const contactId = button.getAttribute('data-id');
-                    
-                    db.collection('contact_submissions').doc(contactId).get()
-                        .then(doc => {
-                            if (doc.exists) {
-                                const newStatus = doc.data().status === 'unread' ? 'read' : 'unread';
-                                
-                                db.collection('contact_submissions').doc(contactId).update({
-                                    status: newStatus
-                                }).then(() => {
-                                    // Refresh data after status change
-                                    loadDashboardData();
-                                    loadContactData();
-                                });
-                            }
-                        });
-                });
-            });
-            
-            // Delete contact
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (confirm("Are you sure you want to delete this contact submission? This action cannot be undone.")) {
-                        const contactId = button.getAttribute('data-id');
-                        
-                        db.collection('contact_submissions').doc(contactId).delete()
-                            .then(() => {
-                                // Refresh data after deletion
+            // Contact Modal Action Buttons
+            document.getElementById('modal-contact-status').addEventListener('click', () => {
+                if (!currentContactId) return;
+                
+                firebase.firestore().collection('contact_submissions').doc(currentContactId).get()
+                    .then(doc => {
+                        if (doc.exists) {
+                            const newStatus = doc.data().status === 'unread' ? 'read' : 'unread';
+                            
+                            firebase.firestore().collection('contact_submissions').doc(currentContactId).update({
+                                status: newStatus
+                            }).then(() => {
+                                contactModal.classList.remove('active');
+                                // Refresh data after status change
                                 loadDashboardData();
                                 loadContactData();
                             });
-                    }
-                });
-            });
-        }
-        
-        // Setup Course Action Buttons
-        function setupCourseActions(tableContainer) {
-            const viewButtons = tableContainer.querySelectorAll('.view-btn');
-            const markButtons = tableContainer.querySelectorAll('.mark-btn');
-            const deleteButtons = tableContainer.querySelectorAll('.delete-btn');
-            
-            // View course details
-            viewButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const courseId = button.getAttribute('data-id');
-                    currentCourseId = courseId;
-                    
-                    db.collection('course_requests').doc(courseId).get()
-                        .then(doc => {
-                            if (doc.exists) {
-                                const data = doc.data();
-                                const date = data.timestamp ? new Date(data.timestamp.toDate()) : new Date();
-                                const dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                                
-                                document.getElementById('modal-course-name').textContent = data.user_name;
-                                document.getElementById('modal-course-email').textContent = data.user_email;
-                                document.getElementById('modal-course-phone').textContent = data.user_phone;
-                                document.getElementById('modal-course-title').textContent = data.course_title;
-                                document.getElementById('modal-course-category').textContent = data.course_category;
-                                document.getElementById('modal-course-price').textContent = data.course_price;
-                                document.getElementById('modal-course-date').textContent = dateString;
-                                
-                                const statusBtn = document.getElementById('modal-course-status');
-                                if (data.status === 'pending') {
-                                    statusBtn.textContent = 'Approve Request';
-                                    statusBtn.classList.remove('btn-warning');
-                                    statusBtn.classList.add('btn-success');
-                                } else {
-                                    statusBtn.textContent = 'Mark as Pending';
-                                    statusBtn.classList.remove('btn-success');
-                                    statusBtn.classList.add('btn-warning');
-                                }
-                                
-                                courseModal.classList.add('active');
-                            }
-                        });
-                });
+                        }
+                    }).catch(error => {
+                        console.error("Error toggling status from modal: ", error);
+                    });
             });
             
-            // Mark as approved/pending
-            markButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const courseId = button.getAttribute('data-id');
-                    
-                    db.collection('course_requests').doc(courseId).get()
-                        .then(doc => {
-                            if (doc.exists) {
-                                const newStatus = doc.data().status === 'pending' ? 'approved' : 'pending';
-                                
-                                db.collection('course_requests').doc(courseId).update({
-                                    status: newStatus
-                                }).then(() => {
-                                    // Refresh data after status change
-                                    loadDashboardData();
-                                    loadCourseData();
-                                });
-                            }
-                        });
-                });
-            });
-            
-            // Delete course request
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if (confirm("Are you sure you want to delete this course request? This action cannot be undone.")) {
-                        const courseId = button.getAttribute('data-id');
-                        
-                        db.collection('course_requests').doc(courseId).delete()
-                            .then(() => {
-                                // Refresh data after deletion
-                                loadDashboardData();
-                                loadCourseData();
-                            });
-                    }
-                });
-            });
-        }
-        
-        // Contact Modal Action Buttons
-        document.getElementById('modal-contact-status').addEventListener('click', () => {
-            if (!currentContactId) return;
-            
-            db.collection('contact_submissions').doc(currentContactId).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        const newStatus = doc.data().status === 'unread' ? 'read' : 'unread';
-                        
-                        db.collection('contact_submissions').doc(currentContactId).update({
-                            status: newStatus
-                        }).then(() => {
+            document.getElementById('modal-contact-delete').addEventListener('click', () => {
+                if (!currentContactId) return;
+                
+                if (confirm("Are you sure you want to delete this contact submission? This action cannot be undone.")) {
+                    firebase.firestore().collection('contact_submissions').doc(currentContactId).delete()
+                        .then(() => {
                             contactModal.classList.remove('active');
-                            // Refresh data after status change
+                            // Refresh data after deletion
                             loadDashboardData();
                             loadContactData();
+                        }).catch(error => {
+                            console.error("Error deleting contact from modal: ", error);
                         });
-                    }
-                });
-        });
-        
-        document.getElementById('modal-contact-delete').addEventListener('click', () => {
-            if (!currentContactId) return;
+                }
+            });
             
-            if (confirm("Are you sure you want to delete this contact submission? This action cannot be undone.")) {
-                db.collection('contact_submissions').doc(currentContactId).delete()
-                    .then(() => {
-                        contactModal.classList.remove('active');
-                        // Refresh data after deletion
-                        loadDashboardData();
-                        loadContactData();
+            document.getElementById('modal-contact-reply').addEventListener('click', () => {
+                if (!currentContactId) return;
+                
+                firebase.firestore().collection('contact_submissions').doc(currentContactId).get()
+                    .then(doc => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            const mailtoLink = `mailto:${data.email}?subject=Re: Your Message to mentneo&body=Dear ${data.name},%0D%0A%0D%0AThank you for contacting mentneo.%0D%0A%0D%0A`;
+                            window.open(mailtoLink);
+                        }
+                    }).catch(error => {
+                        console.error("Error opening reply email: ", error);
                     });
-            }
-        });
-        
-        document.getElementById('modal-contact-reply').addEventListener('click', () => {
-            if (!currentContactId) return;
+            });
             
-            db.collection('contact_submissions').doc(currentContactId).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        const data = doc.data();
-                        const mailtoLink = `mailto:${data.email}?subject=Re: Your Message to mentneo&body=Dear ${data.name},%0D%0A%0D%0AThank you for contacting mentneo.%0D%0A%0D%0A`;
-                        window.open(mailtoLink);
-                    }
-                });
-        });
-        
-        // Course Modal Action Buttons
-        document.getElementById('modal-course-status').addEventListener('click', () => {
-            if (!currentCourseId) return;
+            // Settings page functionality
+            document.getElementById('update-password').addEventListener('click', () => {
+                const newPassword = document.getElementById('new-password').value;
+                
+                if (!newPassword || newPassword.length < 6) {
+                    alert("Please enter a valid password (at least 6 characters)");
+                    return;
+                }
+                
+                const user = firebase.auth().currentUser;
+                
+                if (user) {
+                    user.updatePassword(newPassword)
+                        .then(() => {
+                            alert("Password updated successfully!");
+                            document.getElementById('new-password').value = '';
+                        })
+                        .catch(error => {
+                            alert("Error updating password: " + error.message);
+                        });
+                }
+            });
             
-            db.collection('course_requests').doc(currentCourseId).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        const newStatus = doc.data().status === 'pending' ? 'approved' : 'pending';
-                        
-                        db.collection('course_requests').doc(currentCourseId).update({
-                            status: newStatus
-                        }).then(() => {
-                            courseModal.classList.remove('active');
-                            // Refresh data after status change
+            document.getElementById('clear-read').addEventListener('click', () => {
+                if (confirm("Are you sure you want to delete all read messages? This action cannot be undone.")) {
+                    try {
+                        firebase.firestore().collection('contact_submissions').where('status', '==', 'read')
+                            .get()
+                            .then(snapshot => {
+                                const batch = firebase.firestore().batch();
+                                
+                                snapshot.forEach(doc => {
+                                    batch.delete(doc.ref);
+                            });
+                            
+                            return batch.commit();
+                        })
+                        .then(() => {
+                            alert("Read messages cleared successfully!");
                             loadDashboardData();
-                            loadCourseData();
+                            loadContactData();
+                        }).catch(error => {
+                            console.error("Error clearing read messages: ", error);
+                            alert("Error clearing read messages: " + error.message);
                         });
+                    } catch (error) {
+                        console.error("Error in clear-read function: ", error);
                     }
-                });
-        });
-        
-        document.getElementById('modal-course-delete').addEventListener('click', () => {
-            if (!currentCourseId) return;
+                }
+            });
             
-            if (confirm("Are you sure you want to delete this course request? This action cannot be undone.")) {
-                db.collection('course_requests').doc(currentCourseId).delete()
-                    .then(() => {
-                        courseModal.classList.remove('active');
-                        // Refresh data after deletion
-                        loadDashboardData();
-                        loadCourseData();
-                    });
-            }
-        });
-        
-        document.getElementById('modal-course-contact').addEventListener('click', () => {
-            if (!currentCourseId) return;
-            
-            db.collection('course_requests').doc(currentCourseId).get()
-                .then(doc => {
-                    if (doc.exists) {
-                        const data = doc.data();
-                        const mailtoLink = `mailto:${data.user_email}?subject=Your Course Request at mentneo&body=Dear ${data.user_name},%0D%0A%0D%0AThank you for your interest in our ${data.course_title} course.%0D%0A%0D%0A`;
-                        window.open(mailtoLink);
-                    }
-                });
-        });
-        
-        // Settings page functionality
-        document.getElementById('update-password').addEventListener('click', () => {
-            const newPassword = document.getElementById('new-password').value;
-            
-            if (!newPassword || newPassword.length < 6) {
-                alert("Please enter a valid password (at least 6 characters)");
-                return;
-            }
-            
-            const user = auth.currentUser;
-            
-            if (user) {
-                user.updatePassword(newPassword)
-                    .then(() => {
-                        alert("Password updated successfully!");
-                        document.getElementById('new-password').value = '';
-                    })
-                    .catch(error => {
-                        alert("Error updating password: " + error.message);
-                    });
-            }
-        });
-        
-        document.getElementById('clear-read').addEventListener('click', () => {
-            if (confirm("Are you sure you want to delete all read messages? This action cannot be undone.")) {
-                db.collection('contact_submissions').where('status', '==', 'read')
+            // Certificate Management Functions
+            function loadCertificateData() {
+                const tableBody = document.getElementById('certificates-table-body');
+                tableBody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading certificates...</td></tr>';
+                
+                firebase.firestore().collection('certificates')
+                    .orderBy('issueDate', 'desc')
                     .get()
                     .then(snapshot => {
-                        const batch = db.batch();
+                        if (snapshot.empty) {
+                            tableBody.innerHTML = `
+                                <tr>
+                                    <td colspan="6" class="empty-state">
+                                        <div><i class="fas fa-certificate empty-icon"></i></div>
+                                        <div>No certificates issued yet</div>
+                                    </td>
+                                </tr>
+                            `;
+                            return;
+                        }
                         
+                        tableBody.innerHTML = '';
                         snapshot.forEach(doc => {
-                            batch.delete(doc.ref);
+                            const data = doc.data();
+                            const issueDate = data.issueDate ? new Date(data.issueDate.toDate()).toLocaleDateString() : 'N/A';
+                            
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${doc.id}</td>
+                                <td>${data.studentName || 'N/A'}</td>
+                                <td>${data.courseName || 'N/A'}</td>
+                                <td>${issueDate}</td>
+                                <td>
+                                    <span class="status-pill ${data.status === 'revoked' ? 'status-unread' : 'status-read'}">
+                                        ${data.status || 'active'}
+                                    </span>
+                                </td>
+                                <td class="actions">
+                                    <button class="action-btn view-certificate-btn" data-id="${doc.id}" title="View Certificate">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit-certificate-btn" data-id="${doc.id}" title="Edit Certificate">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn delete-certificate-btn" data-id="${doc.id}" title="Delete Certificate">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    ${data.status !== 'revoked' ? 
+                                        `<button class="action-btn revoke-certificate-btn" data-id="${doc.id}" title="Revoke Certificate">
+                                            <i class="fas fa-ban"></i>
+                                        </button>` : 
+                                        `<button class="action-btn activate-certificate-btn" data-id="${doc.id}" title="Activate Certificate">
+                                            <i class="fas fa-check"></i>
+                                        </button>`
+                                    }
+                                </td>
+                            `;
+                            tableBody.appendChild(row);
                         });
                         
-                        return batch.commit();
-                    })
-                    .then(() => {
-                        alert("Read messages cleared successfully!");
-                        loadDashboardData();
-                        loadContactData();
+                        // Add event listeners for certificate actions
+                        setupCertificateActions();
+                    }).catch(error => {
+                        console.error("Error fetching certificates: ", error);
+                        tableBody.innerHTML = `
+                            <tr>
+                                <td colspan="6" class="empty-state">
+                                    <div><i class="fas fa-exclamation-triangle empty-icon"></i></div>
+                                    <div>Error loading certificate data</div>
+                                    <div style="font-size: 0.8rem; color: #6b7280; margin-top: 10px;">${error.message}</div>
+                                </td>
+                            </tr>
+                        `;
                     });
             }
-        });
-        
-        document.getElementById('clear-processed').addEventListener('click', () => {
-            if (confirm("Are you sure you want to delete all approved course requests? This action cannot be undone.")) {
-                db.collection('course_requests').where('status', '==', 'approved')
-                    .get()
-                    .then(snapshot => {
-                        const batch = db.batch();
+            
+            // Setup Certificate Action Buttons
+            function setupCertificateActions() {
+                const viewButtons = document.querySelectorAll('.view-certificate-btn');
+                const editButtons = document.querySelectorAll('.edit-certificate-btn');
+                const deleteButtons = document.querySelectorAll('.delete-certificate-btn');
+                const revokeButtons = document.querySelectorAll('.revoke-certificate-btn');
+                const activateButtons = document.querySelectorAll('.activate-certificate-btn');
+                
+                // View certificate details
+                viewButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const certificateId = button.getAttribute('data-id');
                         
-                        snapshot.forEach(doc => {
-                            batch.delete(doc.ref);
-                        });
-                        
-                        return batch.commit();
-                    })
-                    .then(() => {
-                        alert("Approved course requests cleared successfully!");
-                        loadDashboardData();
-                        loadCourseData();
+                        firebase.firestore().collection('certificates').doc(certificateId).get()
+                            .then(doc => {
+                                if (doc.exists) {
+                                    const data = doc.data();
+                                    const issueDate = data.issueDate ? new Date(data.issueDate.toDate()).toLocaleDateString() : 'N/A';
+                                    
+                                    document.getElementById('student-name').value = data.studentName || '';
+                                    document.getElementById('student-email').value = data.studentEmail || '';
+                                    document.getElementById('course-name').value = data.courseName || '';
+                                    document.getElementById('issue-date').value = data.issueDate ? data.issueDate.toDate().toISOString().substring(0, 10) : '';
+                                    document.getElementById('certificate-grade').value = data.grade || 'Good';
+                                    document.getElementById('certificate-notes').value = data.notes || '';
+                                    
+                                    document.getElementById('certificate-modal-title').textContent = `View Certificate - ${doc.id}`;
+                                    document.getElementById('certificate-submit').style.display = 'none';
+                                    document.getElementById('certificate-modal').classList.add('active');
+                                }
+                            }).catch(error => {
+                                console.error("Error fetching certificate details: ", error);
+                            });
                     });
+                });
+                
+                // Edit certificate
+                editButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const certificateId = button.getAttribute('data-id');
+                        
+                        firebase.firestore().collection('certificates').doc(certificateId).get()
+                            .then(doc => {
+                                if (doc.exists) {
+                                    const data = doc.data();
+                                    const issueDate = data.issueDate ? new Date(data.issueDate.toDate()).toLocaleDateString() : 'N/A';
+                                    
+                                    document.getElementById('student-name').value = data.studentName || '';
+                                    document.getElementById('student-email').value = data.studentEmail || '';
+                                    document.getElementById('course-name').value = data.courseName || '';
+                                    document.getElementById('issue-date').value = data.issueDate ? data.issueDate.toDate().toISOString().substring(0, 10) : '';
+                                    document.getElementById('certificate-grade').value = data.grade || 'Good';
+                                    document.getElementById('certificate-notes').value = data.notes || '';
+                                    
+                                    document.getElementById('certificate-id').value = certificateId;
+                                    document.getElementById('certificate-mode').value = 'edit';
+                                    document.getElementById('certificate-modal-title').textContent = `Edit Certificate - ${doc.id}`;
+                                    document.getElementById('certificate-submit').style.display = 'inline-block';
+                                    document.getElementById('certificate-modal').classList.add('active');
+                                }
+                            }).catch(error => {
+                                console.error("Error fetching certificate details: ", error);
+                            });
+                    });
+                });
+                
+                // Delete certificate
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const certificateId = button.getAttribute('data-id');
+                        
+                        if (confirm("Are you sure you want to delete this certificate? This action cannot be undone.")) {
+                            firebase.firestore().collection('certificates').doc(certificateId).delete()
+                                .then(() => {
+                                    loadCertificateData();
+                                }).catch(error => {
+                                    console.error("Error deleting certificate: ", error);
+                                });
+                        }
+                    });
+                });
+                
+                // Revoke certificate
+                revokeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const certificateId = button.getAttribute('data-id');
+                        
+                        if (confirm("Are you sure you want to revoke this certificate?")) {
+                            firebase.firestore().collection('certificates').doc(certificateId).update({
+                                status: 'revoked'
+                            }).then(() => {
+                                loadCertificateData();
+                            }).catch(error => {
+                                console.error("Error revoking certificate: ", error);
+                            });
+                        }
+                    });
+                });
+                
+                // Activate certificate
+                activateButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const certificateId = button.getAttribute('data-id');
+                        
+                        if (confirm("Are you sure you want to activate this certificate?")) {
+                            firebase.firestore().collection('certificates').doc(certificateId).update({
+                                status: 'active'
+                            }).then(() => {
+                                loadCertificateData();
+                            }).catch(error => {
+                                console.error("Error activating certificate: ", error);
+                            });
+                        }
+                    });
+                });
+            }
+            
+            // Add certificate search functionality
+            document.querySelector('a[data-tab="certificates"]').addEventListener('click', () => {
+                loadCertificateData();
+            });
+            
+            // Certificate verification
+            const verifyBtn = document.getElementById('verify-certificate-btn');
+            if (verifyBtn) {
+                verifyBtn.addEventListener('click', () => {
+                    const searchValue = document.getElementById('certificate-search').value.trim();
+                    if (!searchValue) {
+                        alert('Please enter a certificate ID or student email');
+                        return;
+                    }
+                    
+                    const resultDiv = document.getElementById('certificate-result');
+                    resultDiv.innerHTML = '<div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-spin"></i> Verifying certificate...</div>';
+                    resultDiv.style.display = 'block';
+                    
+                    // First try to find by certificate ID
+                    firebase.firestore().collection('certificates').doc(searchValue).get()
+                        .then(doc => {
+                            if (doc.exists) {
+                                // Display certificate
+                                const data = doc.data();
+                                const issueDate = data.issueDate ? new Date(data.issueDate.toDate()).toLocaleDateString() : 'N/A';
+                                
+                                resultDiv.innerHTML = `
+                                    <div style="background: ${data.status === 'revoked' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)'};
+                                                padding: 20px; border-radius: 8px;">
+                                        <h3 style="color: ${data.status === 'revoked' ? '#ef4444' : '#10b981'}; margin-bottom: 15px;">
+                                            Certificate ${data.status === 'revoked' ? 'Invalid (Revoked)' : 'Valid'}
+                                        </h3>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                            <div>
+                                                <strong>Certificate ID:</strong>
+                                                <p>${doc.id}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Status:</strong>
+                                                <p>${data.status || 'Active'}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Student:</strong>
+                                                <p>${data.studentName || 'N/A'}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Email:</strong>
+                                                <p>${data.studentEmail || 'N/A'}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Course:</strong>
+                                                <p>${data.courseName || 'N/A'}</p>
+                                            </div>
+                                            <div>
+                                                <strong>Issue Date:</strong>
+                                                <p>${issueDate}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                // Try to search by email
+                                firebase.firestore().collection('certificates')
+                                    .where('studentEmail', '==', searchValue)
+                                    .get()
+                                    .then(snapshot => {
+                                        if (!snapshot.empty) {
+                                            const doc = snapshot.docs[0];
+                                            const data = doc.data();
+                                            const issueDate = data.issueDate ? new Date(data.issueDate.toDate()).toLocaleDateString() : 'N/A';
+                                            
+                                            resultDiv.innerHTML = `
+                                                <div style="background: ${data.status === 'revoked' ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)'};
+                                                            padding: 20px; border-radius: 8px;">
+                                                    <h3 style="color: ${data.status === 'revoked' ? '#ef4444' : '#10b981'}; margin-bottom: 15px;">
+                                                        Certificate ${data.status === 'revoked' ? 'Invalid (Revoked)' : 'Valid'}
+                                                    </h3>
+                                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                                        <div>
+                                                            <strong>Certificate ID:</strong>
+                                                            <p>${doc.id}</p>
+                                                        </div>
+                                                        <div>
+                                                            <strong>Status:</strong>
+                                                            <p>${data.status || 'Active'}</p>
+                                                        </div>
+                                                        <div>
+                                                            <strong>Student:</strong>
+                                                            <p>${data.studentName || 'N/A'}</p>
+                                                        </div>
+                                                        <div>
+                                                            <strong>Email:</strong>
+                                                            <p>${data.studentEmail || 'N/A'}</p>
+                                                        </div>
+                                                        <div>
+                                                            <strong>Course:</strong>
+                                                            <p>${data.courseName || 'N/A'}</p>
+                                                        </div>
+                                                        <div>
+                                                            <strong>Issue Date:</strong>
+                                                            <p>${issueDate}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `;
+                                        } else {
+                                            resultDiv.innerHTML = `
+                                                <div style="background: rgba(239, 68, 68, 0.1); padding: 20px; border-radius: 8px;">
+                                                    <h3 style="color: #ef4444; margin-bottom: 15px;">No Certificate Found</h3>
+                                                    <p>No certificate was found with the ID or email: ${searchValue}</p>
+                                                </div>
+                                            `;
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error("Error searching by email:", error);
+                                        resultDiv.innerHTML = `
+                                            <div style="background: rgba(239, 68, 68, 0.1); padding: 20px; border-radius: 8px;">
+                                                <h3 style="color: #ef4444; margin-bottom: 15px;">Error</h3>
+                                                <p>An error occurred while searching for the certificate: ${error.message}</p>
+                                            </div>
+                                        `;
+                                    });
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error verifying certificate:", error);
+                            resultDiv.innerHTML = `
+                                <div style="background: rgba(239, 68, 68, 0.1); padding: 20px; border-radius: 8px;">
+                                    <h3 style="color: #ef4444; margin-bottom: 15px;">Error</h3>
+                                    <p>An error occurred while verifying the certificate: ${error.message}</p>
+                                </div>
+                            `;
+                        });
+                });
             }
         });
     </script>
