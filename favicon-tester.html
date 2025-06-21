@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Tester</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        .file-status { display: flex; align-items: center; margin-bottom: 10px; }
+        .file-status .status { width: 20px; height: 20px; border-radius: 50%; margin-right: 10px; }
+        .file-status .success { background-color: #4CAF50; }
+        .file-status .error { background-color: #F44336; }
+        .preview { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 20px; }
+        .preview-item { text-align: center; border: 1px solid #eee; padding: 10px; border-radius: 4px; }
+        .preview-item img { display: block; margin: 10px auto; }
+    </style>
+    
+    <!-- Favicon Package -->
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+</head>
+<body>
+    <h1>Favicon Tester</h1>
+    <p>This page checks if your favicon files exist and are properly formatted.</p>
+    
+    <h2>File Status:</h2>
+    <div id="fileStatus">Loading...</div>
+    
+    <h2>Preview:</h2>
+    <div class="preview">
+        <div class="preview-item">
+            <h3>favicon.svg</h3>
+            <img src="favicon.svg" width="96" height="96" alt="SVG Favicon">
+        </div>
+        <div class="preview-item">
+            <h3>favicon-96x96.png</h3>
+            <img src="favicon-96x96.png" width="96" height="96" alt="96x96 PNG Favicon">
+        </div>
+        <div class="preview-item">
+            <h3>apple-touch-icon.png</h3>
+            <img src="apple-touch-icon.png" width="96" height="96" alt="Apple Touch Icon">
+        </div>
+        <div class="preview-item">
+            <h3>favicon.ico</h3>
+            <img src="favicon.ico" width="96" height="96" alt="ICO Favicon">
+        </div>
+    </div>
+    
+    <script>
+        // Check file existence
+        async function checkFileExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+        
+        async function checkAllFiles() {
+            const files = [
+                'favicon-96x96.png',
+                'favicon.svg',
+                'favicon.ico',
+                'apple-touch-icon.png',
+                'site.webmanifest'
+            ];
+            
+            let statusHTML = '';
+            
+            for (const file of files) {
+                const exists = await checkFileExists(file);
+                statusHTML += `
+                    <div class="file-status">
+                        <div class="status ${exists ? 'success' : 'error'}"></div>
+                        <div>${file}: ${exists ? 'Found' : 'Not found or empty'}</div>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('fileStatus').innerHTML = statusHTML;
+        }
+        
+        checkAllFiles();
+    </script>
+</body>
+</html>

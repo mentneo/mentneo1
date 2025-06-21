@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon PNG Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        canvas { border: 1px solid #ccc; margin: 20px 0; }
+        button { padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+        #dataUrl { overflow-wrap: break-word; background: #f4f4f4; padding: 10px; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>Favicon PNG Generator</h1>
+    <p>This tool will generate a PNG version of your favicon based on the SVG.</p>
+    
+    <div>
+        <canvas id="canvas" width="96" height="96"></canvas>
+    </div>
+    
+    <button id="generate">Generate PNG</button>
+    <button id="download">Download PNG</button>
+    
+    <h3>Generated Data URL:</h3>
+    <div id="dataUrl"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const dataUrlElement = document.getElementById('dataUrl');
+            
+            // Draw a simplified version of the logo
+            function drawLogo() {
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Blue hexagon
+                ctx.beginPath();
+                ctx.moveTo(48, 20); // top
+                ctx.lineTo(76, 34); // top right
+                ctx.lineTo(76, 62); // bottom right
+                ctx.lineTo(48, 76); // bottom
+                ctx.lineTo(20, 62); // bottom left
+                ctx.lineTo(20, 34); // top left
+                ctx.closePath();
+                
+                // Create blue gradient
+                const blueGradient = ctx.createLinearGradient(20, 48, 76, 48);
+                blueGradient.addColorStop(0, '#4361ee');
+                blueGradient.addColorStop(1, '#3f37c9');
+                ctx.fillStyle = blueGradient;
+                ctx.fill();
+                
+                // Save state before rotation
+                ctx.save();
+                
+                // Translate to center, rotate, translate back
+                ctx.translate(48, 48);
+                ctx.rotate(Math.PI / 3); // 60 degrees
+                ctx.translate(-48, -48);
+                
+                // Purple hexagon (rotated)
+                ctx.beginPath();
+                ctx.moveTo(48, 20); // top
+                ctx.lineTo(76, 34); // top right
+                ctx.lineTo(76, 62); // bottom right
+                ctx.lineTo(48, 76); // bottom
+                ctx.lineTo(20, 62); // bottom left
+                ctx.lineTo(20, 34); // top left
+                ctx.closePath();
+                
+                // Create purple gradient
+                const purpleGradient = ctx.createLinearGradient(20, 48, 76, 48);
+                purpleGradient.addColorStop(0, '#7209b7');
+                purpleGradient.addColorStop(1, '#560bad');
+                ctx.fillStyle = purpleGradient;
+                ctx.fill();
+                
+                // Restore original transformation
+                ctx.restore();
+                
+                // White center cube
+                ctx.fillStyle = 'white';
+                ctx.fillRect(38, 38, 20, 20);
+            }
+            
+            // Generate data URL
+            document.getElementById('generate').addEventListener('click', function() {
+                drawLogo();
+                const dataUrl = canvas.toDataURL('image/png');
+                dataUrlElement.textContent = dataUrl;
+            });
+            
+            // Download PNG
+            document.getElementById('download').addEventListener('click', function() {
+                drawLogo();
+                const dataUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = 'favicon-96x96.png';
+                link.href = dataUrl;
+                link.click();
+            });
+            
+            // Initial draw
+            drawLogo();
+        });
+    </script>
+</body>
+</html>

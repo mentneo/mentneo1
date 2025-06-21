@@ -1271,18 +1271,13 @@
         <a href="./course.html">Course</a>
         <a href="./contact.html">Contact</a>
     </div>
-    <div class="contact-options">
-        <a href="tel:+919182146476" class="call-button">
-            <i class="fas fa-phone-alt"></i> Request a Call
-        </a>
-    </div>
-    <button class="theme-toggle" id="theme-toggle">🌙</button>
-    <div class="mobile-menu" id="mobile-menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+    <div class="theme-menu-container" style="display: flex; align-items: center; gap: 20px;">
+        <button class="theme-toggle" id="theme-toggle" style="background: none; border: none; cursor: pointer; padding: 8px;">
+            <i class="fas fa-moon" style="font-size: 1.2rem;"></i>
+        </button>
+        <button class="mobile-menu" id="mobile-menu" style="background: none; border: none; cursor: pointer; padding: 8px;">
+            <i class="fas fa-bars" style="font-size: 1.2rem;"></i>
+        </button>
     </div>
 </nav>
 
@@ -1594,81 +1589,45 @@
     </section>
 
     <!-- Latest Updates Section -->
-    <section id="updates" class="services" style="background: var(--bg-secondary); margin-top: -50px; padding-bottom: 100px;">
-        <h2 class="section-title fade-in">Latest Updates</h2>
-        <div class="updates-container" style="max-width: 1200px; margin: 0 auto;">
-            <div class="updates-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0; border-top: 4px solid #6366f1; box-shadow: var(--shadow);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span class="date" style="color: var(--primary); font-size: 0.9rem;">June 15, 2023</span>
-                        <span class="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">NEW BATCH</span>
-                    </div>
-                    <h3 style="margin: 0 0 15px; font-size: 1.4rem;">Summer Cohort Enrollment Open</h3>
-                    <p style="margin-bottom: 20px; line-height: 1.6;">Limited spots available for our intensive 12-week Full-Stack Development bootcamp. Early enrollment discounts end June 30th. Part-time and weekend options available.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 500;">
-                            Apply Now
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                        <div style="display: flex; align-items: center; gap: 5px; color: #6b7280; font-size: 0.9rem;">
-                            <i class="fas fa-users" style="color: var(--primary);"></i>
-                            <span>24 spots left</span>
-                        </div>
-                    </div>
+    <section class="latest-updates" style="padding: 80px 5%; background: var(--bg-secondary);">
+        <h2 class="section-title">Latest Updates</h2>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <!-- Latest Update 1 -->
+            <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; border-top: 4px solid var(--primary);">
+                <div style="margin-bottom: 15px;">
+                    <span style="color: var(--primary);">March 22, 2024</span>
+                    <span style="float: right; background: rgba(99,102,241,0.1); color: var(--primary); padding: 3px 10px; border-radius: 15px;">New Course</span>
                 </div>
-                
-                <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0; border-top: 4px solid #3b82f6; box-shadow: var(--shadow);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span class="date" style="color: var(--primary); font-size: 0.9rem;">June 8, 2023</span>
-                        <span class="background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">ACHIEVEMENT</span>
-                    </div>
-                    <h3 style="margin: 0 0 15px; font-size: 1.4rem;">90% Job Placement Rate Achieved</h3>
-                    <p style="margin-bottom: 20px; line-height: 1.6;">We're proud to announce that our latest graduating class has achieved a 90% job placement rate within 3 months of program completion, with an average starting salary of ₹7.2 LPA.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 500;">
-                            Read Success Stories 
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                        <div style="display: flex; align-items: center;">
-                            <div style="display: flex; margin-right: -5px;">
-                                <div style="width: 25px; height: 25px; border-radius: 50%; background: #3b82f6; border: 2px solid var(--card-bg);"></div>
-                                <div style="width: 25px; height: 25px; border-radius: 50%; background: #6366f1; border: 2px solid var(--card-bg); margin-left: -10px;"></div>
-                                <div style="width: 25px; height: 25px; border-radius: 50%; background: #8b5cf6; border: 2px solid var(--card-bg); margin-left: -10px;"></div>
-                            </div>
-                            <span style="font-size: 0.9rem; color: #6b7280; margin-left: 5px;">+28 others</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; transition: var(--transition); transform: translateY(20px); opacity: 0; border-top: 4px solid #8b5cf6; box-shadow: var(--shadow);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <span class="date" style="color: var(--primary); font-size: 0.9rem;">May 30, 2023</span>
-                        <span class="background: rgba(139, 92, 246, 0.1); color: #8b5cf6; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">NEW COURSE</span>
-                    </div>
-                    <h3 style="margin: 0 0 15px; font-size: 1.4rem;">AI & Machine Learning Track Launched</h3>
-                    <p style="margin-bottom: 20px; line-height: 1.6;">Introducing our new specialized track in AI & ML with Python focusing on practical applications in web development, data analysis, and automation. Early adopter pricing available.</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <a href="#" class="read-more" style="color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; font-weight: 500;">
-                            Explore Curriculum
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </a>
-                        <div style="padding: 4px 10px; background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border-radius: 20px; font-size: 0.75rem;">
-                            Limited Seats
-                        </div>
-                    </div>
-                </div>
+                <h3 style="margin-bottom: 15px;">Python Full Stack Development</h3>
+                <p style="margin-bottom: 20px;">New batch starting from April 1st. Early bird offers available. Limited seats only.</p>
+                <a href="./course.html" style="color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
-            
-            <!-- View All Updates Button -->
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="./blog.html" class="cta-button secondary-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">
-                    View All Updates
+
+            <!-- Latest Update 2 -->
+            <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; border-top: 4px solid #10b981;">
+                <div style="margin-bottom: 15px;">
+                    <span style="color: var(--primary);">March 20, 2024</span>
+                    <span style="float: right; background: rgba(16,185,129,0.1); color: #10b981; padding: 3px 10px; border-radius: 15px;">Achievement</span>
+                </div>
+                <h3 style="margin-bottom: 15px;">100+ Students Placed</h3>
+                <p style="margin-bottom: 20px;">Our students have been placed in top companies with packages ranging from 5-12 LPA.</p>
+                <a href="./success.html" style="color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    Success Stories <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Latest Update 3 -->
+            <div class="update-card" style="background: var(--card-bg); padding: 25px; border-radius: 15px; border-top: 4px solid #f59e0b;">
+                <div style="margin-bottom: 15px;">
+                    <span style="color: var(--primary);">March 18, 2024</span>
+                    <span style="float: right; background: rgba(245,158,11,0.1); color: #f59e0b; padding: 3px 10px; border-radius: 15px;">Event</span>
+                </div>
+                <h3 style="margin-bottom: 15px;">Tech Workshop Series</h3>
+                <p style="margin-bottom: 20px;">Join our weekend workshop series on emerging technologies. Free for all students.</p>
+                <a href="./events.html" style="color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                    Register Now <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -1729,75 +1688,38 @@
         // Theme Toggle
         const body = document.body;
         const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
 
         themeToggle.addEventListener('click', () => {
             if (body.classList.contains('dark-mode')) {
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
-                themeToggle.textContent = '☀️';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
             } else {
                 body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
-                themeToggle.textContent = '🌙';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
             }
         });
 
         // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        let isMenuOpen = false;
+        const menuIcon = mobileMenu.querySelector('i');
 
-        function toggleMenu() {
-            isMenuOpen = !isMenuOpen;
-            
-            if (isMenuOpen) {
-                               navLinks.classList.add('active');
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Animate menu items
-                document.querySelectorAll('.nav-links a').forEach((link, index) => {
-                    setTimeout(() => {
-
-                        link.style.opacity = '1';
-                        link.style.transform = 'translateY(0)';
-                    }, 100 * index);
-                });
-            } else {
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Reset menu items
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.style.opacity = '0';
-                    link.style.transform = 'translateY(20px)';
-                });
-            }
-        }
-
-        mobileMenu.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking links
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (isMenuOpen) {
-                    toggleMenu();
-                }
-            });
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (isMenuOpen && !e.target.closest('.nav-links') && !e.target.closest('.mobile-menu')) {
-                toggleMenu();
-            }
-        });
-
-        // Close menu on resize (if moving to desktop view)
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && isMenuOpen) {
-                toggleMenu();
+            if (!e.target.closest('.nav-links') && !e.target.closest('.mobile-menu')) {
+                navLinks.classList.remove('active');
+                menuIcon.classList.replace('fa-times', 'fa-bars');
             }
         });
 
@@ -1935,6 +1857,8 @@
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+       
 
         const particlesMaterial = new THREE.PointsMaterial({
             size: 0.005,
